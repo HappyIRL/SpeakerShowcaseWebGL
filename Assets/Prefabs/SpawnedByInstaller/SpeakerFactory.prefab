@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerParent: {fileID: 5013346803544086361, guid: 4421dc312bd8c624fadb4b5f4028c3e0, type: 3}
   speakerParts:
-  - {fileID: 2850918639389225815, guid: e0ec3c7b74c1527449c8b48e3491540f, type: 3}
+  - {fileID: 73940649675624194, guid: 3fae9057fdea4f442915bd69074cb6d8, type: 3}
   - {fileID: 4700434994540384609, guid: 4d7b78aca1521e94e9175cd12d997aa7, type: 3}
   - {fileID: 404176097030114122, guid: 01554ec2339a1ac4d8d5a29a61efca86, type: 3}
   - {fileID: 6662357248149229413, guid: 846a2776ae084f44d91514239a0419ab, type: 3}

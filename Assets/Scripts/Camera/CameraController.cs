@@ -49,8 +49,10 @@ namespace Assets.Scripts
 
 		protected override void OnSelection(Interactable interaction)
 		{
-			target = interaction;
+			if (!SpeakerParent.IsSpeakerInteractable)
+				return;
 
+			target = interaction;
 			LerpToNewPosition();
 		}
 

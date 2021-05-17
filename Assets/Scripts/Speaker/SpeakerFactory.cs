@@ -8,6 +8,7 @@ namespace Assets.Scripts
 {
 	public class SpeakerFactory : MonoBehaviour
 	{
+
 		[SerializeField] private GameObject speakerParent;
 		[SerializeField] private List<GameObject> speakerParts;
 		[SerializeField] private Vector3 speakerPartSpawn;

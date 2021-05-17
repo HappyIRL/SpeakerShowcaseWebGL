@@ -24,6 +24,7 @@ namespace Assets.Scripts
 			{
 				if (hitInfo.transform.TryGetComponent(out Interactable interactable))
 				{
+
 					currentInteractable = interactable;
 					SelectionChange?.Invoke(interactable);
 				}

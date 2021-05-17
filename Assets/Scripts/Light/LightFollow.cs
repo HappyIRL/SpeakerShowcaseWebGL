@@ -46,6 +46,9 @@ public class LightFollow : PlayerCallbacksMono
 
 	protected override void OnSelection(Interactable interactable)
 	{
+		if (!SpeakerParent.IsSpeakerInteractable)
+			return;
+
 		target = interactable;
 
 		if (activeCoroutine != null)

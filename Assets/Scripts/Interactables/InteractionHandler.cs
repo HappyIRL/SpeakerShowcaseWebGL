@@ -27,7 +27,7 @@ namespace Assets.Scripts
 
 		protected override void OnSelection(Interactable interaction)
 		{
-			if(interaction.GetSpeakerPartType() == SpeakerPartType.Casing)
+			if (interaction.GetSpeakerPartType() == SpeakerPartType.Casing)
 			{
 				ChangeCasing();
 			}
@@ -35,6 +35,9 @@ namespace Assets.Scripts
 
 		private void ChangeCasing()
 		{
+			if (!SpeakerParent.IsSpeakerInteractable)
+				return;
+
 			foreach (var interactable in Interactables)
 			{
 				if (isCasingClosed)
