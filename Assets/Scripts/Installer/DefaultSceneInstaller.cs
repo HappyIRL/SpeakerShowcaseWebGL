@@ -12,6 +12,7 @@ namespace Assets.Scripts
 		[SerializeField] private GameObject playerInputHandler;
 		[SerializeField] private GameObject interactableManager;
 		[SerializeField] private GameObject speakerFactory;
+		[SerializeField] private GameObject uiCanvas;
 		public override void InstallBindings()
 		{
 			Container.Bind<PlayerInputHandler>().FromComponentInNewPrefab(playerInputHandler).AsSingle().NonLazy();
@@ -19,6 +20,8 @@ namespace Assets.Scripts
 			Container.Bind<SelectionHandler>().FromComponentInNewPrefab(selectionHandler).AsSingle().NonLazy();
 			Container.Bind<InteractionHandler>().FromComponentInNewPrefab(interactableManager).AsSingle().NonLazy();
 			Container.Bind<SpeakerFactory>().FromComponentInNewPrefab(speakerFactory).AsSingle().NonLazy();
+			Container.Bind<CanvasHandler>().FromComponentInNewPrefab(uiCanvas).AsSingle().NonLazy();
+
 
 			Container.BindFactory<GameObject, Transform, PrefabFactory>().FromFactory<NormalPrefabFactory>();
 		}

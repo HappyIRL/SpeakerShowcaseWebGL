@@ -19,7 +19,6 @@ public class SpeakerParent : MonoBehaviour
 		startPosition = transform.position;
 		StartCoroutine(Utils.LerpToPosition(transform, finalSpeakerPosition, lerpTime, delay));
 		StartCoroutine(OnFinalPosition());
-
 	}
 
 	private IEnumerator OnFinalPosition()
