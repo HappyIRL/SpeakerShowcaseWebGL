@@ -34,7 +34,7 @@ public class LightFollow : PlayerCallbacksMono
 	{
 		if (target == null && speakerCasing != null)
 		{
-			currentTarget = speakerCasing.GetPosition();
+			currentTarget = speakerCasing.GetCurrentPosition();
 			transform.LookAt(currentTarget);
 		}
 	}
@@ -57,8 +57,8 @@ public class LightFollow : PlayerCallbacksMono
 			activeCoroutine = null;
 		}
 
-		activeCoroutine = StartCoroutine(Utils.LerpToPositionLookAt(transform, currentTarget, target.GetPosition(), 0.5f, 1f));
+		activeCoroutine = StartCoroutine(Utils.LerpToPositionLookAt(transform, currentTarget, target.GetFuturePosition(), 0.5f, 1f));
 
-		currentTarget = target.GetPosition();
+		currentTarget = target.GetFuturePosition();
 	}
 }

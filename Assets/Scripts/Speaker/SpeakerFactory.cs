@@ -11,7 +11,6 @@ namespace Assets.Scripts
 
 		[SerializeField] private GameObject speakerParent;
 		[SerializeField] private List<GameObject> speakerParts;
-		[SerializeField] private Vector3 speakerPartSpawn;
 
 		public event Action<Interactable> SpawnedInteractable;
 
@@ -23,9 +22,11 @@ namespace Assets.Scripts
 		private void CreateSpeaker()
 		{
 			GameObject parent = Instantiate(speakerParent);
-			foreach (GameObject speakerPart in speakerParts)
+			foreach (GameObject speaker in speakerParts)
 			{
-				GameObject speakerPartInstance = Instantiate(speakerPart, speakerPartSpawn, speakerPart.transform.rotation);
+				GameObject speakerPartInstance = Instantiate(speaker);
+				speakerPartInstance.TryGetComponent(out SpeakerPart speakerPart);
+				speaker.transform.position = speakerPart.SpawnPosition;
 				speakerPartInstance.transform.parent = parent.transform;
 				SpawnedInteractable?.Invoke(speakerPartInstance.GetComponent<Interactable>());
 			}

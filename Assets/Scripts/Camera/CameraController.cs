@@ -38,7 +38,7 @@ namespace Assets.Scripts
 		{
 			if (target == null)
 			{
-				parentTransform.position = speakerCasing.GetPosition();
+				parentTransform.position = speakerCasing.GetCurrentPosition();
 			}
 		}
 
@@ -74,7 +74,7 @@ namespace Assets.Scripts
 				activeCoroutine = null;
 			}
 
-			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, target.GetPosition(), 0.5f, 0));
+			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, target.GetFuturePosition(), 0.5f, 0));
 		}
 
 		private void SetParentRotation(Vector2 start, Vector2 end)

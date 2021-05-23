@@ -11,7 +11,6 @@ namespace Assets.Scripts
 		public event Action<Interactable> SpeakerCasingSpawn;
 
 		private List<Interactable> Interactables = new List<Interactable>();
-		private bool isCasingClosed = true;
 
 		protected override void OnEnable()
 		{
@@ -27,26 +26,18 @@ namespace Assets.Scripts
 
 		protected override void OnSelection(Interactable interaction)
 		{
-			if (interaction.GetSpeakerPartType() == SpeakerPartType.Casing)
-			{
-				ChangeCasing();
-			}
+			ChangeCasing(interaction);
 		}
 
-		private void ChangeCasing()
+		private void ChangeCasing(Interactable interaction)
 		{
 			if (!SpeakerParent.IsSpeakerInteractable)
 				return;
 
-			foreach (var interactable in Interactables)
-			{
-				if (isCasingClosed)
-					interactable.Inspect();
-				else
-					interactable.EndInteraction();
-			}
-
-			isCasingClosed = !isCasingClosed;
+			if (!interaction.IsOutOfCasing())
+				interaction.Inspect();
+			else
+				interaction.EndInteraction();
 		}
 		private void OnSpawnedInteractable(Interactable interactable)
 		{

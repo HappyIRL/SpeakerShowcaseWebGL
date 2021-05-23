@@ -15,14 +15,18 @@ namespace Assets.Scripts
 		[SerializeField] private Vector3 casedPosition;
 		[SerializeField] private SpeakerPartType speakerPartType;
 
+		private bool isOutOfCasing;
+
 		public virtual void Inspect()
 		{
 			MoveOutOfCasing();
+			isOutOfCasing = true;
 		}
 
 		public virtual void EndInteraction()
 		{
 			MoveIntoCasing();
+			isOutOfCasing = false;
 		}
 
 		public virtual void Focus()
@@ -30,9 +34,12 @@ namespace Assets.Scripts
 			
 		}
 
-		public Vector3 GetPosition()
+		public Vector3 GetFuturePosition()
 		{
-			return transform.position;
+			if (isOutOfCasing)
+				return uncasedPosition;
+			else
+				return casedPosition;
 		}
 
 		public SpeakerPartType GetSpeakerPartType()
@@ -48,6 +55,16 @@ namespace Assets.Scripts
 		protected void MoveIntoCasing()
 		{
 			StartCoroutine(Utils.LerpToPosition(transform, casedPosition, 0.2f, 0));
+		}
+
+		public bool IsOutOfCasing()
+		{
+			return isOutOfCasing;
+		}
+
+		public Vector3 GetCurrentPosition()
+		{
+			return transform.position;
 		}
 	}
 }
