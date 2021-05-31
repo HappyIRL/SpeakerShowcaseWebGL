@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="ScriptableObject/BookletData")]
-public class BookletContainer : ScriptableObject
+namespace Assets.Scripts
 {
-    public List<BookletData> BookletDatas = new List<BookletData>();
-
-    public void IncrementDatas()
+	[CreateAssetMenu(menuName = "ScriptableObject/BookletData")]
+	public class BookletContainer : ScriptableObject
 	{
-		BookletDatas.Add(new BookletData());
+		public List<BookletData> BookletDatas = new List<BookletData>();
+
+		public void IncrementDatas()
+		{
+			BookletDatas.Add(new BookletData());
+		}
 	}
 }

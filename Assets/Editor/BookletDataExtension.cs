@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(BookletContainer))]
-public class BookletDataExtension : Editor
+namespace Assets.Scripts
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(BookletContainer))]
+    public class BookletDataExtension : Editor
     {
-        base.OnInspectorGUI();
-        var script = (BookletContainer)target;
-
-        if (GUILayout.Button("Add Page", GUILayout.Height(40)))
+        public override void OnInspectorGUI()
         {
-            script.IncrementDatas();
-        }
+            base.OnInspectorGUI();
+            var script = (BookletContainer)target;
 
+            if (GUILayout.Button("Add Page", GUILayout.Height(40)))
+            {
+                script.IncrementDatas();
+            }
+
+        }
     }
 }

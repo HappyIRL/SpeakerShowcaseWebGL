@@ -10,6 +10,7 @@ namespace Assets.Scripts
 		protected virtual void OnEnable()
 		{
 			selectionHandler.SelectionChange += OnSelection;
+			selectionHandler.SameSelection += OnSameSelection;
 			playerInputHandler.DragInput += OnDragInput;
 			playerInputHandler.ScrollInput += OnScrollInput;
 		}
@@ -17,16 +18,23 @@ namespace Assets.Scripts
 		protected virtual void OnDisable()
 		{
 			selectionHandler.SelectionChange -= OnSelection;
+			selectionHandler.SameSelection -= OnSameSelection;
 			playerInputHandler.DragInput -= OnDragInput;
 			playerInputHandler.ScrollInput -= OnScrollInput;
 		}
 
-		protected virtual void OnSelection(Interactable interactable)
+		protected virtual void OnSelection(Interactable interaction)
 		{
 		}
+
+		protected virtual void OnSameSelection(Interactable interaction)
+		{
+		}
+
 		protected virtual void OnDragInput(Vector2 start, Vector2 end)
 		{
 		}
+
 		protected virtual void OnScrollInput(Vector2 scroll)
 		{
 		}

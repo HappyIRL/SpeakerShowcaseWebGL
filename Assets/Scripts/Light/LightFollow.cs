@@ -6,23 +6,25 @@ using UnityEngine;
 
 public class LightFollow : PlayerCallbacksMono
 {
-	[Zenject.Inject] private InteractionHandler interactionsHandler;
+	[Zenject.Inject] private CameraController cameraController;
+	[Zenject.Inject] private InteractionHandler interactionHandler;
 
 	private Interactable speakerCasing;
 	private Interactable target;
 	private Vector3 currentTarget = Vector3.zero;
 	private Coroutine activeCoroutine;
 
-	protected override void OnEnable()
+	private void OnEnable()
 	{
-		base.OnEnable();
-		interactionsHandler.SpeakerCasingSpawn += OnSpeakerCasingSpawn;
+		cameraController.CameraMovement += OnCameraMovement;
+		interactionHandler.SpeakerCasingSpawn += OnSpeakerCasingSpawn;
 	}
 
-	protected override void OnDisable()
+	private void OnDisable()
 	{
-		base.OnDisable();
-		interactionsHandler.SpeakerCasingSpawn -= OnSpeakerCasingSpawn;
+		cameraController.CameraMovement -= OnCameraMovement;
+		interactionHandler.SpeakerCasingSpawn -= OnSpeakerCasingSpawn;
+
 	}
 
 	private void Start()
@@ -44,12 +46,14 @@ public class LightFollow : PlayerCallbacksMono
 		speakerCasing = interactable;
 	}
 
-	protected override void OnSelection(Interactable interactable)
+	private void OnCameraMovement(Interactable interaction)
 	{
-		if (!SpeakerParent.IsSpeakerInteractable)
-			return;
+		MoveLights(interaction);
+	}
 
-		target = interactable;
+	private void MoveLights(Interactable interaction)
+	{
+		target = interaction;
 
 		if (activeCoroutine != null)
 		{

@@ -110,5 +110,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uncasedPosition: {x: -0.25, y: 2, z: 0.5}
   casedPosition: {x: -0.25, y: 2, z: 0}
-  speakerPartType: 1
+  speakerPartType: 0
   spawnPosition: {x: -0.25, y: 0, z: 0}

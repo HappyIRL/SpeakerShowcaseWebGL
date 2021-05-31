@@ -10,6 +10,6 @@ namespace Assets.Scripts
 		public void Focus();
 		public Vector3 GetFuturePosition();
 		public Vector3 GetCurrentPosition();
-		public SpeakerPartType GetSpeakerPartType();
+		public SpeakerComponents GetSpeakerComponent();
 	}
 }

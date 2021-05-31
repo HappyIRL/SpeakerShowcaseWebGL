@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf09432e44cf63d4c8c2d5d5284d3d99, type: 3}
+  m_Name: BookletDataContainer
+  m_EditorClassIdentifier: 
+  BookletDatas:
+  - SpeakerComponent: 0
+    Header: A Series
+    Description: 'The new A Series cabinets build on the heritage of ADAM Audio and
+      the AX Series in particular. In an evolutionary design, A Series cabinets have
+      deeper beveling to further reduce diffraction. In addition, thicker baffle
+      walls strengthen the cabinets and reduce internal vibrations. A dual-sided
+      flared-port design optimizes airflow and helps reduce port noise. Overall the
+      A Series design can provide lower extension and higher efficiency in a smaller
+      box than other speakers. '
+    Image: {fileID: 21300000, guid: 7a23f68b136080c48a0e176bd3483642, type: 3}
+  - SpeakerComponent: 1
+    Header: A Series
+    Description: 'The new A Series cabinets build on the heritage of ADAM Audio and
+      the AX Series in particular. In an evolutionary design, A Series cabinets have
+      deeper beveling to further reduce diffraction. In addition, thicker baffle
+      walls strengthen the cabinets and reduce internal vibrations. A dual-sided
+      flared-port design optimizes airflow and helps reduce port noise. Overall the
+      A Series design can provide lower extension and higher efficiency in a smaller
+      box than other speakers. '
+    Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}

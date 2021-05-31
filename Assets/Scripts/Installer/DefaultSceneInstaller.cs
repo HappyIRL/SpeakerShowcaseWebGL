@@ -13,15 +13,17 @@ namespace Assets.Scripts
 		[SerializeField] private GameObject interactableManager;
 		[SerializeField] private GameObject speakerFactory;
 		[SerializeField] private GameObject uiCanvas;
+		[SerializeField] private GameObject audioHandler;
+
 		public override void InstallBindings()
 		{
 			Container.Bind<PlayerInputHandler>().FromComponentInNewPrefab(playerInputHandler).AsSingle().NonLazy();
-			Container.Bind<Camera>().FromComponentInNewPrefab(mainCamera).AsSingle().NonLazy();
+			Container.Bind<CameraController>().FromComponentInNewPrefab(mainCamera).AsSingle().NonLazy();
 			Container.Bind<SelectionHandler>().FromComponentInNewPrefab(selectionHandler).AsSingle().NonLazy();
 			Container.Bind<InteractionHandler>().FromComponentInNewPrefab(interactableManager).AsSingle().NonLazy();
 			Container.Bind<SpeakerFactory>().FromComponentInNewPrefab(speakerFactory).AsSingle().NonLazy();
 			Container.Bind<CanvasHandler>().FromComponentInNewPrefab(uiCanvas).AsSingle().NonLazy();
-
+			Container.Bind<AudioHandler>().FromComponentInNewPrefab(audioHandler).AsSingle().NonLazy();
 
 			Container.BindFactory<GameObject, Transform, PrefabFactory>().FromFactory<NormalPrefabFactory>();
 		}

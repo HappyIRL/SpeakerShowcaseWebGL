@@ -2,51 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Booklet : MonoBehaviour
+namespace Assets.Scripts
 {
-	[SerializeField] private BookletContainer bookletContent;
-	[SerializeField] private PageHandler pageHandler;
-	[SerializeField] private GameObject NextButton;
-	[SerializeField] private GameObject PreviousButton;
-
-	private void Start()
+	public class Booklet : MonoBehaviour
 	{
-		foreach(BookletData data in bookletContent.BookletDatas)
+		[SerializeField] private BookletContainer bookletContent;
+		[SerializeField] private PageHandler pageHandler;
+		[SerializeField] private GameObject NextButton;
+		[SerializeField] private GameObject PreviousButton;
+
+		private void Start()
 		{
-			pageHandler.AddPage(data);
+			foreach (BookletData data in bookletContent.BookletDatas)
+			{
+				pageHandler.AddPage(data);
+			}
 		}
-	}
 
-	public void OnClick_OpenBooklet()
-	{
-		pageHandler.TogglePage();
-		EnableButtons();
-	}
+		public void OnClick_OpenBooklet()
+		{
+			pageHandler.TogglePage();
+			EnableButtons();
+		}
 
-	public void OnClick_NextPage()
-	{
-		pageHandler.NextPage();
-		EnableButtons();
-	}
+		public void OnClick_NextPage()
+		{
+			pageHandler.NextPage();
+			EnableButtons();
+		}
 
-	public void OnClick_PreviousPage()
-	{
-		pageHandler.PreviousPage();
-		EnableButtons();
-	}
+		public void OnClick_PreviousPage()
+		{
+			pageHandler.PreviousPage();
+			EnableButtons();
+		}
 
-	private void EnableButtons()
-	{
-		if (pageHandler.CurrentPage == pageHandler.PageAmount)
-			NextButton.SetActive(false);
-		else
-			NextButton.SetActive(true);
+		private void EnableButtons()
+		{
+			if (pageHandler.CurrentInspectedComponent == pageHandler.LastPage)
+				NextButton.SetActive(false);
+			else
+				NextButton.SetActive(true);
 
-		if (pageHandler.CurrentPage == 0)
-			PreviousButton.SetActive(false);
-		else
-			PreviousButton.SetActive(true);
-
-		Debug.Log(pageHandler.CurrentPage);
+			if (pageHandler.CurrentInspectedComponent == SpeakerComponents.None)
+				PreviousButton.SetActive(false);
+			else
+				PreviousButton.SetActive(true);
+		}
 	}
 }

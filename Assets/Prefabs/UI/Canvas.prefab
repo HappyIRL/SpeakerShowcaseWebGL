@@ -581,6 +581,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4293367091171930364, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293367091171930364, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293367091171930364, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293367091171930364, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5768732052384814838, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -692,6 +708,10 @@ PrefabInstance:
     - target: {fileID: 8114521801930078605, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClick_PreviousPage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956843512042277596, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -306
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80cf2fce56fa56b44906e9066f7f2011, type: 3}

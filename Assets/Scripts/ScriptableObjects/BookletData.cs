@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class BookletData
+namespace Assets.Scripts
 {
-	public string Header;
-	public string Description;
-	public Sprite Image;
+	[Serializable]
+	public class BookletData
+	{
+		public SpeakerComponents SpeakerComponent;
+		public string Header;
+		public string Description;
+		public Sprite Image;
+	}
 }

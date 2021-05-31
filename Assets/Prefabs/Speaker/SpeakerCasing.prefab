@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uncasedPosition: {x: 0, y: 2, z: 0}
   casedPosition: {x: 0, y: 2, z: 0}
-  speakerPartType: 0
+  speakerPartType: 1
   spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &861554232294996254
 BoxCollider:

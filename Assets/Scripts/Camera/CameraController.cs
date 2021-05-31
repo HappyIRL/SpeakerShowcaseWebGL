@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,10 +6,15 @@ namespace Assets.Scripts
 {
 	public class CameraController : PlayerCallbacksMono
 	{
+		[Zenject.Inject] private InteractionHandler interactionHandler;
+
+		public event Action<Interactable> CameraMovement;
+
+		private Interactable cameraFocus;
+		public Interactable CameraFocus => cameraFocus;
+
 		[SerializeField] private float maxZoom;
 		[SerializeField] private float minZoom;
-
-		[Zenject.Inject] private InteractionHandler interactionHandler;
 
 		private Interactable target;
 		private Vector3 localRotation = Vector3.zero;
@@ -52,8 +58,20 @@ namespace Assets.Scripts
 			if (!SpeakerParent.IsSpeakerInteractable)
 				return;
 
-			target = interaction;
-			LerpToNewPosition();
+			if(interaction == cameraFocus)
+			{
+				LerpToNewPosition(interaction);
+			}
+		}
+
+		protected override void OnSameSelection(Interactable interaction)
+		{
+			if (!SpeakerParent.IsSpeakerInteractable)
+				return;
+
+			cameraFocus = interaction;
+
+			LerpToNewPosition(interaction);
 		}
 
 		protected override void OnDragInput(Vector2 start, Vector2 end)
@@ -66,8 +84,12 @@ namespace Assets.Scripts
 			SetParentScale(scroll);
 		}
 
-		private void LerpToNewPosition()
+		private void LerpToNewPosition(Interactable interaction)
 		{
+			CameraMovement?.Invoke(interaction);
+
+			target = interaction;
+
 			if (activeCoroutine != null)
 			{
 				StopCoroutine(activeCoroutine);

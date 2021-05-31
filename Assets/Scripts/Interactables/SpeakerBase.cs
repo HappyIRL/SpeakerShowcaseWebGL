@@ -3,17 +3,26 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-	public enum SpeakerPartType
+	public enum SpeakerComponents
 	{
+		None,
 		Casing,
-		Part
+		HPSWaveGuide,
+		Tweeter,
+		HPSScrews,
+		MidRangeDriver,
+		BigWoofer,
+		BackplateSectionOne,
+		BackplateSectionTwo,
+		BackplateSectionThree,
+		CasingScrewHollows
 	}
 
 	public class SpeakerBase : MonoBehaviour, Interactable
 	{
 		[SerializeField] private Vector3 uncasedPosition;
 		[SerializeField] private Vector3 casedPosition;
-		[SerializeField] private SpeakerPartType speakerPartType;
+		[SerializeField] private SpeakerComponents speakerPartType;
 
 		private bool isOutOfCasing;
 
@@ -42,7 +51,7 @@ namespace Assets.Scripts
 				return casedPosition;
 		}
 
-		public SpeakerPartType GetSpeakerPartType()
+		public SpeakerComponents GetSpeakerComponent()
 		{
 			return speakerPartType;
 		}
