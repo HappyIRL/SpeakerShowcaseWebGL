@@ -55,10 +55,10 @@ namespace Assets.Scripts
 
 		protected override void OnSelection(Interactable interaction)
 		{
-			if (!SpeakerParent.IsSpeakerInteractable)
-				return;
 
-			if(interaction == cameraFocus)
+			target = interaction;
+
+			if (interaction == cameraFocus)
 			{
 				LerpToNewPosition(interaction);
 			}
@@ -66,8 +66,7 @@ namespace Assets.Scripts
 
 		protected override void OnSameSelection(Interactable interaction)
 		{
-			if (!SpeakerParent.IsSpeakerInteractable)
-				return;
+			target = interaction;
 
 			cameraFocus = interaction;
 
@@ -88,7 +87,6 @@ namespace Assets.Scripts
 		{
 			CameraMovement?.Invoke(interaction);
 
-			target = interaction;
 
 			if (activeCoroutine != null)
 			{

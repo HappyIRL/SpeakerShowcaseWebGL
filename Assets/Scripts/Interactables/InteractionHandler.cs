@@ -10,6 +10,7 @@ namespace Assets.Scripts
 		[Zenject.Inject] private CameraController cameraController;
 
 		public event Action<Interactable> SpeakerCasingSpawn;
+		public event Action<Interactable> SpeakerPartMovement;
 
 		private List<Interactable> Interactables = new List<Interactable>();
 
@@ -27,27 +28,19 @@ namespace Assets.Scripts
 
 		protected override void OnSelection(Interactable interaction)
 		{
-			if (!SpeakerParent.IsSpeakerInteractable)
-				return;
-
 			ChangeCasing(interaction);
 		}
 
 		protected override void OnSameSelection(Interactable interaction)
 		{
-			if (!SpeakerParent.IsSpeakerInteractable)
-				return;
-
 			if(cameraController.CameraFocus == interaction)
 				ChangeCasing(interaction);
 		}
 
 		private void ChangeCasing(Interactable interaction)
 		{
-			if (!interaction.IsOutOfCasing())
-				interaction.Inspect();
-			else
-				interaction.EndInteraction();
+			interaction.ChangePosition();
+			SpeakerPartMovement?.Invoke(interaction);
 		}
 
 		private void OnSpawnedInteractable(Interactable interactable)

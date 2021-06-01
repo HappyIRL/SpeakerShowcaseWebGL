@@ -23,32 +23,18 @@ namespace Assets.Scripts
 		[SerializeField] private Vector3 uncasedPosition;
 		[SerializeField] private Vector3 casedPosition;
 		[SerializeField] private SpeakerComponents speakerPartType;
+		[SerializeField] private AudioClip moveIn;
+		[SerializeField] private AudioClip moveOut;
 
-		private bool isOutOfCasing;
+		private AudioClip currentSound;
+		private Vector3 futurePosition;
 
-		public virtual void Inspect()
-		{
-			MoveOutOfCasing();
-			isOutOfCasing = true;
-		}
-
-		public virtual void EndInteraction()
-		{
-			MoveIntoCasing();
-			isOutOfCasing = false;
-		}
-
-		public virtual void Focus()
-		{
-			
-		}
+		private bool movement = false;
+		private bool inCasing = true;
 
 		public Vector3 GetFuturePosition()
 		{
-			if (isOutOfCasing)
-				return uncasedPosition;
-			else
-				return casedPosition;
+			return futurePosition;
 		}
 
 		public SpeakerComponents GetSpeakerComponent()
@@ -58,22 +44,42 @@ namespace Assets.Scripts
 
 		protected void MoveOutOfCasing()
 		{
+			inCasing = false;
+			movement = true;
+			futurePosition = uncasedPosition;
+			currentSound = moveOut;
 			StartCoroutine(Utils.LerpToPosition(transform, uncasedPosition, 0.2f, 0));
 		}
 
 		protected void MoveIntoCasing()
 		{
+			inCasing = true;
+			movement = true;
+			futurePosition = casedPosition;
+			currentSound = moveIn;
 			StartCoroutine(Utils.LerpToPosition(transform, casedPosition, 0.2f, 0));
-		}
-
-		public bool IsOutOfCasing()
-		{
-			return isOutOfCasing;
 		}
 
 		public Vector3 GetCurrentPosition()
 		{
 			return transform.position;
+		}
+
+		public AudioClip GetAudioClip()
+		{
+			return currentSound;
+		}
+
+		public void ChangePosition()
+		{
+			if (inCasing)
+			{
+				MoveOutOfCasing();
+			}
+			else
+			{
+				MoveIntoCasing();
+			}
 		}
 	}
 }

@@ -39,12 +39,12 @@ namespace Assets.Scripts
 
 		private void EnableButtons()
 		{
-			if (pageHandler.CurrentInspectedComponent == pageHandler.LastPage)
+			if (pageHandler.CurrentPage == pageHandler.PageCountCurrentInspectedComponent - 1)
 				NextButton.SetActive(false);
 			else
 				NextButton.SetActive(true);
 
-			if (pageHandler.CurrentInspectedComponent == SpeakerComponents.None)
+			if (pageHandler.CurrentPage == 0)
 				PreviousButton.SetActive(false);
 			else
 				PreviousButton.SetActive(true);

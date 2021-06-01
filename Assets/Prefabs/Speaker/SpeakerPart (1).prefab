@@ -111,4 +111,6 @@ MonoBehaviour:
   uncasedPosition: {x: 0.25, y: 2, z: 0.5}
   casedPosition: {x: 0.25, y: 2, z: 0}
   speakerPartType: 1
+  moveIn: {fileID: 8300000, guid: 7a839ea2da885554ca30548d34ad0fad, type: 3}
+  moveOut: {fileID: 8300000, guid: 2ee7851acb963f04e86ca14d3ab31144, type: 3}
   spawnPosition: {x: 0.25, y: 0, z: 0}

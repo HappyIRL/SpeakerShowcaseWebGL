@@ -9,20 +9,18 @@ namespace Assets.Scripts
 	{
 		[SerializeField] private Page uiPage;
 
-		[SerializeField] private Dictionary<SpeakerComponents,BookletData> Booklet = new Dictionary<SpeakerComponents, BookletData>();
-
-		private bool uiPageActive = false;
-
 		private int pageAmount = -1;
 		public int PageAmount => pageAmount;
 
+		private int currentPage = 0;
+		public int CurrentPage => currentPage;
+
+		public int PageCountCurrentInspectedComponent => booklet[currentInspectedComponent].Count;
+
+		private Dictionary<SpeakerComponents, List<BookletData>> booklet = new Dictionary<SpeakerComponents, List<BookletData>>();
 		private SpeakerComponents currentInspectedComponent = SpeakerComponents.None;
-		public SpeakerComponents CurrentInspectedComponent => currentInspectedComponent;
+		private bool uiPageActive = false;
 
-		private SpeakerComponents lastPage = SpeakerComponents.None;
-		public SpeakerComponents LastPage => lastPage;
-
-		
 
 		public void AddPage(BookletData data)
 		{
@@ -31,49 +29,50 @@ namespace Assets.Scripts
 				Debug.LogError("Image in BookletData might be null!");
 				return;
 			}
-
-			if(Booklet.ContainsKey(data.SpeakerComponent))
+		
+			if(!booklet.ContainsKey(data.SpeakerComponent))
 			{
-				Debug.LogError($"There can currently only be one page of {data.SpeakerComponent} in BookletData ");
-				return;
+				List<BookletData> pages = new List<BookletData>();
+				pages.Add(data);
+				booklet.Add(data.SpeakerComponent, pages);
 			}
-
-			Booklet.Add(data.SpeakerComponent, data);
-
-			lastPage = data.SpeakerComponent;
+			else
+			{
+				booklet[data.SpeakerComponent].Add(data);
+			}
 		}
 
 		protected override void OnSameSelection(Interactable interaction)
 		{
 			SpeakerComponents speakerComponent = interaction.GetSpeakerComponent();
 
-			if (!Booklet.ContainsKey(speakerComponent))
+			if (!booklet.ContainsKey(speakerComponent))
 			{
 				Debug.LogError($"BookletData does not have a page for {speakerComponent}!");
 				return;
 			}
 
 			currentInspectedComponent = speakerComponent;
-			Debug.Log(currentInspectedComponent);
 		}
 
-		public void ShowPage()
+		public void ShowPage(int index)
 		{
-			if (Booklet.Count == 0)
-				return;
-
-			uiPage.Header.text = Booklet[currentInspectedComponent].Header;
-			uiPage.Description.text = Booklet[currentInspectedComponent].Description;
-			uiPage.Image.sprite = Booklet[currentInspectedComponent].Image;
+			uiPage.Header.text = booklet[currentInspectedComponent][index].Header;
+			uiPage.Description.text = booklet[currentInspectedComponent][index].Description;
+			uiPage.Image.sprite = booklet[currentInspectedComponent][index].Image;
 		}
 
 		public void TogglePage()
 		{
+			if (booklet.Count == 0)
+				return;
+
 			uiPage.gameObject.SetActive(!uiPageActive);
+			currentPage = 0;
 
 			if (!uiPageActive)
 			{
-				ShowPage();
+				ShowPage(currentPage);
 			}
 
 			uiPageActive = !uiPageActive;
@@ -81,19 +80,22 @@ namespace Assets.Scripts
 
 		public void NextPage()
 		{
-			currentInspectedComponent++;
+			if (currentPage == booklet[currentInspectedComponent].Count - 1)
+				return;
 
-			ShowPage();
+			currentPage++;
+
+			ShowPage(currentPage);
 		}
 
 		public void PreviousPage()
 		{
-			if (currentInspectedComponent == 0)
+			if (currentPage == 0)
 				return;
 
-			currentInspectedComponent--;
+			currentPage--;
 
-			ShowPage();
+			ShowPage(currentPage);
 		}
 	}
 }

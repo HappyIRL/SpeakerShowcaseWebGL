@@ -18,3 +18,4 @@ MonoBehaviour:
   interactableManager: {fileID: 1659726814938397266, guid: 224828182bed21f4d9a975bca6ef6c33, type: 3}
   speakerFactory: {fileID: 4395591619612611, guid: 39d83472c77e6da4f9ebc16ad27c644b, type: 3}
   uiCanvas: {fileID: 8244062281068372799, guid: 056bd4aac75563c4d9de6b7848a9e088, type: 3}
+  audioHandler: {fileID: 1778593020230018683, guid: f9d57aff3f854bd49adb225cf44a3eb2, type: 3}

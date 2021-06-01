@@ -9,7 +9,7 @@ namespace Assets.Scripts
 
 		private Camera sceneCamera;
 
-		private Interactable currentInteractable;
+		private Interactable lastInteraction;
 
 		public event Action<Interactable> SelectionChange;
 
@@ -34,13 +34,16 @@ namespace Assets.Scripts
 			{
 				if (hitInfo.transform.TryGetComponent(out Interactable interactable))
 				{
-					if(currentInteractable == interactable)
+					if (!SpeakerParent.IsSpeakerInteractable)
+						return;
+
+					if (lastInteraction == interactable)
 					{
 						SameSelection?.Invoke(interactable);
 						return;
 					}
 
-					currentInteractable = interactable;
+					lastInteraction = interactable;
 					SelectionChange?.Invoke(interactable);
 				}
 			}

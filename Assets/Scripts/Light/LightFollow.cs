@@ -14,14 +14,15 @@ public class LightFollow : PlayerCallbacksMono
 	private Vector3 currentTarget = Vector3.zero;
 	private Coroutine activeCoroutine;
 
-	private void OnEnable()
+	protected override void OnEnable()
 	{
+		base.OnEnable();
 		cameraController.CameraMovement += OnCameraMovement;
 		interactionHandler.SpeakerCasingSpawn += OnSpeakerCasingSpawn;
 	}
-
-	private void OnDisable()
+	protected override void OnDisable()
 	{
+		base.OnDisable();
 		cameraController.CameraMovement -= OnCameraMovement;
 		interactionHandler.SpeakerCasingSpawn -= OnSpeakerCasingSpawn;
 
