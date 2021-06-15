@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,13 +15,13 @@ namespace Assets.Scripts
 
 		private int currentPage = 0;
 		public int CurrentPage => currentPage;
-
 		public int PageCountCurrentInspectedComponent => booklet[currentInspectedComponent].Count;
+
+		public event Action<SpeakerComponents> ToggledPage;
 
 		private Dictionary<SpeakerComponents, List<BookletData>> booklet = new Dictionary<SpeakerComponents, List<BookletData>>();
 		private SpeakerComponents currentInspectedComponent = SpeakerComponents.None;
 		private bool uiPageActive = false;
-
 
 		public void AddPage(BookletData data)
 		{
@@ -48,11 +49,12 @@ namespace Assets.Scripts
 
 			if (!booklet.ContainsKey(speakerComponent))
 			{
-				Debug.LogError($"BookletData does not have a page for {speakerComponent}!");
+				Debug.LogError($"BookletData does not have a page for this component: {speakerComponent}!");
 				return;
 			}
 
 			currentInspectedComponent = speakerComponent;
+			
 		}
 
 		public void ShowPage(int index)
@@ -76,6 +78,8 @@ namespace Assets.Scripts
 			}
 
 			uiPageActive = !uiPageActive;
+
+			ToggledPage?.Invoke(currentInspectedComponent);
 		}
 
 		public void NextPage()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BookletDatas:
   - SpeakerComponent: 1
-    Header: Casing
+    Header: A SERIES
     Description: 'The new A Series cabinets build on the heritage of ADAM Audio and
       the AX Series in particular. In an evolutionary design, A Series cabinets have
       deeper beveling to further reduce diffraction. In addition, thicker baffle
@@ -22,22 +22,20 @@ MonoBehaviour:
       flared-port design optimizes airflow and helps reduce port noise. Overall the
       A Series design can provide lower extension and higher efficiency in a smaller
       box than other speakers. '
-    Image: {fileID: 21300000, guid: a115d874e594ba441b9ae9079d92ae17, type: 3}
+    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
   - SpeakerComponent: 2
-    Header: HPS
-    Description: 'The new A Series cabinets build on the heritage of ADAM Audio and
-      the AX Series in particular. In an evolutionary design, A Series cabinets have
-      deeper beveling to further reduce diffraction. In addition, thicker baffle
-      walls strengthen the cabinets and reduce internal vibrations. A dual-sided
-      flared-port design optimizes airflow and helps reduce port noise. Overall the
-      A Series design can provide lower extension and higher efficiency in a smaller
-      box than other speakers. '
+    Header: A SERIES 1
+    Description: Page2
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
-  - SpeakerComponent: 6
-    Header: Woofer
-    Description: 
+  - SpeakerComponent: 3
+    Header: A SERIES 2
+    Description: Page3
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
-  - SpeakerComponent: 9
+  - SpeakerComponent: 5
     Header: Backplate
     Description: 
+    Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
+  - SpeakerComponent: 1
+    Header: A SERIES (page 2)
+    Description: LOREM IPSUM
     Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}

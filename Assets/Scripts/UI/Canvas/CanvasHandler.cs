@@ -1,7 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasHandler : MonoBehaviour
+namespace Assets.Scripts
 {
+	public class CanvasHandler : MonoBehaviour
+	{
+		[SerializeField] private PageHandler pageHandler;
+
+		public PageHandler PageHandler => pageHandler;
+	}
 }
+
