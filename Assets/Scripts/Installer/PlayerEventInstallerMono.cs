@@ -16,7 +16,7 @@ namespace Assets.Scripts
 			_playerInputHandler.TouchInput -= OnTouchInput;
 		}
 
-		protected virtual void OnTouchInput(Vector2 position)
+		protected virtual void OnTouchInput(Vector2 position, HoverState state, GameObject go)
 		{
 		}
 

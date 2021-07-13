@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7737bca332a89a4bbe9086d5294cc9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiLayerMask:
+    serializedVersion: 2
+    m_Bits: 32

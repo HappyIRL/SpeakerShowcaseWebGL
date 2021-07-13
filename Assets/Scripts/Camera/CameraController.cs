@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -21,6 +20,7 @@ namespace Assets.Scripts
 		private Transform parentTransform;
 		private Interactable speakerCasing;
 		private Coroutine activeCoroutine;
+		private bool isInititalHoverStateNothing = false;
 
 		private void Awake()
 		{
@@ -72,10 +72,18 @@ namespace Assets.Scripts
 
 			LerpToNewPosition(interaction);
 		}
+		protected override void OnTouchInput(Vector2 start, HoverState state, GameObject go)
+		{
+			if (state == HoverState.Nothing)
+				isInititalHoverStateNothing = true;
+			else
+				isInititalHoverStateNothing = false;
 
+		}
 		protected override void OnDragInput(Vector2 start, Vector2 end)
 		{
-			SetParentRotation(start, end);
+			if(isInititalHoverStateNothing)
+				SetParentRotation(start, end);
 		}
 
 		protected override void OnScrollInput(Vector2 scroll)

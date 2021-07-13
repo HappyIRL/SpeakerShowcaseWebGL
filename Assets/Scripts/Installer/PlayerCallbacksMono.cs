@@ -13,6 +13,8 @@ namespace Assets.Scripts
 			selectionHandler.SameSelection += OnSameSelection;
 			playerInputHandler.DragInput += OnDragInput;
 			playerInputHandler.ScrollInput += OnScrollInput;
+			playerInputHandler.TouchInput += OnTouchInput;
+
 		}
 
 		protected virtual void OnDisable()
@@ -21,6 +23,7 @@ namespace Assets.Scripts
 			selectionHandler.SameSelection -= OnSameSelection;
 			playerInputHandler.DragInput -= OnDragInput;
 			playerInputHandler.ScrollInput -= OnScrollInput;
+			playerInputHandler.TouchInput -= OnTouchInput;
 		}
 
 		protected virtual void OnSelection(Interactable interaction)
@@ -28,6 +31,10 @@ namespace Assets.Scripts
 		}
 
 		protected virtual void OnSameSelection(Interactable interaction)
+		{
+		}
+
+		protected virtual void OnTouchInput(Vector2 vector, HoverState state, GameObject go)
 		{
 		}
 

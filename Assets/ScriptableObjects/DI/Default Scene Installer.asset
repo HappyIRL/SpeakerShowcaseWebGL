@@ -19,3 +19,4 @@ MonoBehaviour:
   speakerFactory: {fileID: 4395591619612611, guid: 39d83472c77e6da4f9ebc16ad27c644b, type: 3}
   uiCanvas: {fileID: 8244062281068372799, guid: 056bd4aac75563c4d9de6b7848a9e088, type: 3}
   audioHandler: {fileID: 1778593020230018683, guid: f9d57aff3f854bd49adb225cf44a3eb2, type: 3}
+  eventSystem: {fileID: 177260638122769682, guid: 145f501d5905ed64c8fc44dda2046ad5, type: 3}

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Assets.Scripts;
-using UnityEditor;
 using UnityEngine;
 
 public class LightFollow : PlayerCallbacksMono

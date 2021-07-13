@@ -1,12 +1,22 @@
 using System;
-using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts
 {
+	public enum HoverState
+	{
+		Nothing,
+		OverGameObject,
+		OverUIObject
+	}
+
 	public class PlayerInputHandler : MonoBehaviour
 	{
-		public event Action<Vector2> TouchInput;
+		[Zenject.Inject] private CameraController cameraController;
+		[Zenject.Inject] private EventSystem eventSystem;
+
+		public event Action<Vector2, HoverState, GameObject> TouchInput;
 
 		public event Action<Vector2, Vector2> DragInput;
 
@@ -14,7 +24,12 @@ namespace Assets.Scripts
 
 		private Vector2 beganInputPos;
 
-		private Vector2 lastMouseScrollData;
+		private Camera sceneCamera;
+
+		private void Start()
+		{
+			sceneCamera = cameraController.GetComponent<Camera>();
+		}
 
 		private void Update()
 		{
@@ -37,7 +52,8 @@ namespace Assets.Scripts
 				Touch touch = Input.touches[0];
 				if (touch.phase == TouchPhase.Began)
 				{
-					TouchInput?.Invoke(touch.position);
+					HoverState result = HoveringOverObject(touch.position, out GameObject go);
+					TouchInput?.Invoke(touch.position, result, go);
 					beganInputPos = touch.position;
 				}
 				else if (touch.phase == TouchPhase.Moved)
@@ -48,7 +64,8 @@ namespace Assets.Scripts
 			}
 			else if (Input.GetMouseButtonDown(0))
 			{
-				TouchInput?.Invoke(Input.mousePosition);
+				HoverState result = HoveringOverObject(Input.mousePosition, out GameObject go);
+				TouchInput?.Invoke(Input.mousePosition, result, go);
 				beganInputPos = Input.mousePosition;
 			}
 			else if(Input.GetMouseButton(0))
@@ -56,6 +73,24 @@ namespace Assets.Scripts
 				DragInput?.Invoke(beganInputPos, Input.mousePosition);
 				beganInputPos = Input.mousePosition;
 			}
+		}
+
+		private HoverState HoveringOverObject(Vector2 mousePosition, out GameObject go)
+		{
+			go = null;
+
+			if (eventSystem.IsPointerOverGameObject())
+			{
+				return HoverState.OverUIObject;
+			}
+
+			if(Physics.Raycast(sceneCamera.ScreenPointToRay(mousePosition), out RaycastHit hitInfo))
+			{
+				go = hitInfo.transform.gameObject;
+				return HoverState.OverGameObject;
+			}
+
+			return HoverState.Nothing;
 		}
 	}
 }

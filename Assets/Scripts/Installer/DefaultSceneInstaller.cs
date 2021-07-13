@@ -1,5 +1,6 @@
 using ModestTree;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Assets.Scripts
@@ -14,6 +15,7 @@ namespace Assets.Scripts
 		[SerializeField] private GameObject speakerFactory;
 		[SerializeField] private GameObject uiCanvas;
 		[SerializeField] private GameObject audioHandler;
+		[SerializeField] private GameObject eventSystem;
 
 		public override void InstallBindings()
 		{
@@ -24,6 +26,8 @@ namespace Assets.Scripts
 			Container.Bind<SpeakerFactory>().FromComponentInNewPrefab(speakerFactory).AsSingle().NonLazy();
 			Container.Bind<CanvasHandler>().FromComponentInNewPrefab(uiCanvas).AsSingle().NonLazy();
 			Container.Bind<AudioHandler>().FromComponentInNewPrefab(audioHandler).AsSingle().NonLazy();
+			Container.Bind<EventSystem>().FromComponentInNewPrefab(eventSystem).AsSingle().NonLazy();
+
 
 			Container.BindFactory<GameObject, Transform, PrefabFactory>().FromFactory<NormalPrefabFactory>();
 		}

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -29,7 +28,6 @@ namespace Assets.Scripts
 		private AudioClip currentSound;
 		private Vector3 futurePosition;
 
-		private bool movement = false;
 		private bool inCasing = true;
 
 		public Vector3 GetFuturePosition()
@@ -45,7 +43,6 @@ namespace Assets.Scripts
 		protected void MoveOutOfCasing()
 		{
 			inCasing = false;
-			movement = true;
 			futurePosition = uncasedPosition;
 			currentSound = moveOut;
 			StartCoroutine(Utils.LerpToPosition(transform, uncasedPosition, 0.2f, 0));
@@ -54,7 +51,6 @@ namespace Assets.Scripts
 		protected void MoveIntoCasing()
 		{
 			inCasing = true;
-			movement = true;
 			futurePosition = casedPosition;
 			currentSound = moveIn;
 			StartCoroutine(Utils.LerpToPosition(transform, casedPosition, 0.2f, 0));

@@ -36,6 +36,12 @@ namespace Assets.Scripts
 				pageHandler.ToggledPage -= UniquePageCheck;
 		}
 
+		public void OnClick_CopyToClipBoard()
+		{
+			GUIUtility.systemCopyBuffer = giveawayData.GiveawayCode;
+
+		}
+
 		private void UniquePageCheck(SpeakerComponents currentInspectedComponent)
 		{
 			if (wonGiveaway == true)

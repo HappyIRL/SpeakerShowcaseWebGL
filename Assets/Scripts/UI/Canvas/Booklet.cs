@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
 	public class Booklet : MonoBehaviour
 	{
+		// references should be given through the constructor and it shouldnt be a mono behaviour
 		[SerializeField] private BookletContainer bookletContent;
 		[SerializeField] private PageHandler pageHandler;
 		[SerializeField] private GameObject NextButton;

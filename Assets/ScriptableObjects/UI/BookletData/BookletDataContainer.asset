@@ -39,3 +39,7 @@ MonoBehaviour:
     Header: A SERIES (page 2)
     Description: LOREM IPSUM
     Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
+  - SpeakerComponent: 0
+    Header: qewrqw
+    Description: qwe
+    Image: {fileID: 21300000, guid: 9ad2f1586271287479d6470fcbe18083, type: 3}

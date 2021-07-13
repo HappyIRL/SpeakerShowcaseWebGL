@@ -5,9 +5,7 @@ namespace Assets.Scripts
 {
 	public class SelectionHandler : PlayerEventInstallerMono
 	{
-		[Zenject.Inject] private CameraController cameraController;
-
-		private Camera sceneCamera;
+		[SerializeField] private LayerMask uiLayerMask;
 
 		private Interactable lastInteraction;
 
@@ -15,24 +13,18 @@ namespace Assets.Scripts
 
 		public event Action<Interactable> SameSelection;
 
-
-		private void Start()
+		protected override void OnTouchInput(Vector2 position, HoverState state, GameObject go)
 		{
-			sceneCamera = cameraController.GetComponent<Camera>();
+			base.OnTouchInput(position, state, go);
+
+			UpdateSelection(go);
 		}
 
-		protected override void OnTouchInput(Vector2 position)
+		private void UpdateSelection(GameObject objectHovered)
 		{
-			base.OnTouchInput(position);
-
-			UpdateSelection(position);
-		}
-
-		private void UpdateSelection(Vector2 position)
-		{
-			if (Physics.Raycast(sceneCamera.ScreenPointToRay(position), out RaycastHit hitInfo))
+			if(objectHovered != null)
 			{
-				if (hitInfo.transform.TryGetComponent(out Interactable interactable))
+				if (objectHovered.TryGetComponent(out Interactable interactable))
 				{
 					if (!SpeakerParent.IsSpeakerInteractable)
 						return;

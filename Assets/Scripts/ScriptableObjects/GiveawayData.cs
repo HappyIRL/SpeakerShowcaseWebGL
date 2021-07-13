@@ -9,6 +9,7 @@ namespace Assets.Scripts
 	{
 		public string Header;
 		public string Description;
+		public string GiveawayCode;
 	}
 }
 
