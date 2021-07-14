@@ -16,6 +16,7 @@ namespace Assets.Scripts
 		[SerializeField] private GameObject uiCanvas;
 		[SerializeField] private GameObject audioHandler;
 		[SerializeField] private GameObject eventSystem;
+		[SerializeField] private BookletContainer bookletContainer; 
 
 		public override void InstallBindings()
 		{
@@ -27,6 +28,7 @@ namespace Assets.Scripts
 			Container.Bind<CanvasHandler>().FromComponentInNewPrefab(uiCanvas).AsSingle().NonLazy();
 			Container.Bind<AudioHandler>().FromComponentInNewPrefab(audioHandler).AsSingle().NonLazy();
 			Container.Bind<EventSystem>().FromComponentInNewPrefab(eventSystem).AsSingle().NonLazy();
+			Container.Bind<BookletContainer>().FromInstance(bookletContainer).AsSingle();
 
 
 			Container.BindFactory<GameObject, Transform, PrefabFactory>().FromFactory<NormalPrefabFactory>();

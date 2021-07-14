@@ -7,20 +7,29 @@ namespace Assets.Scripts
 {
 	public class PageHandler : PlayerCallbacksMono
 	{
+		[Zenject.Inject] private BookletContainer bookletContainer;
+
 		[SerializeField] private Page uiPage;
 
-		private int pageAmount = -1;
-		public int PageAmount => pageAmount;
+		public int PageCount => booklet.Count;
 
-		private int currentPage = 0;
 		public int CurrentPage => currentPage;
-		public int PageCountCurrentInspectedComponent => booklet[currentInspectedComponent].Count;
+		private int currentPage = 0;
 
-		public event Action<SpeakerComponents> ToggledPage;
 
-		private Dictionary<SpeakerComponents, List<BookletData>> booklet = new Dictionary<SpeakerComponents, List<BookletData>>();
-		private SpeakerComponents currentInspectedComponent = SpeakerComponents.None;
+		public event Action<int> ToggledPage;
+
+		private Dictionary<SpeakerComponents, int> bookletMapper = new Dictionary<SpeakerComponents, int>();
+		private List<BookletData> booklet = new List<BookletData>();
 		private bool uiPageActive = false;
+
+		private void Start()
+		{
+			foreach (BookletData data in bookletContainer.BookletDatas)
+			{
+				AddPage(data);
+			}
+		}
 
 		public void AddPage(BookletData data)
 		{
@@ -29,38 +38,38 @@ namespace Assets.Scripts
 				Debug.LogError("Image in BookletData might be null!");
 				return;
 			}
-		
-			if(!booklet.ContainsKey(data.SpeakerComponent))
+
+			if(bookletMapper.ContainsKey(data.SpeakerComponent))
 			{
-				List<BookletData> pages = new List<BookletData>();
-				pages.Add(data);
-				booklet.Add(data.SpeakerComponent, pages);
+				Debug.LogError("Tried adding an additional booklet data into booklet with same speaker component id, this is not allowed!");
+				return;
 			}
-			else
-			{
-				booklet[data.SpeakerComponent].Add(data);
-			}
+
+			booklet.Add(data);
+			bookletMapper.Add(data.SpeakerComponent, booklet.Count - 1);
 		}
 
 		protected override void OnSameSelection(Interactable interaction)
 		{
 			SpeakerComponents speakerComponent = interaction.GetSpeakerComponent();
 
-			if (!booklet.ContainsKey(speakerComponent))
+			if (!bookletMapper.ContainsKey(speakerComponent))
 			{
 				Debug.LogError($"BookletData does not have a page for this component: {speakerComponent}!");
 				return;
 			}
 
-			currentInspectedComponent = speakerComponent;
+			currentPage = bookletMapper[speakerComponent];
 			
 		}
 
-		public void ShowPage(int index)
+		public void ShowPage()
 		{
-			uiPage.Header.text = booklet[currentInspectedComponent][index].Header;
-			uiPage.Description.text = booklet[currentInspectedComponent][index].Description;
-			uiPage.Image.sprite = booklet[currentInspectedComponent][index].Image;
+			BookletData data = booklet[currentPage];
+
+			uiPage.Header.text = data.Header;
+			uiPage.Description.text = data.Description;
+			uiPage.Image.sprite = data.Image;
 		}
 
 		public void TogglePage()
@@ -69,36 +78,35 @@ namespace Assets.Scripts
 				return;
 
 			uiPage.gameObject.SetActive(!uiPageActive);
-			currentPage = 0;
 
 			if (!uiPageActive)
 			{
-				ShowPage(currentPage);
+				ShowPage();
 			}
 
 			uiPageActive = !uiPageActive;
 
-			ToggledPage?.Invoke(currentInspectedComponent);
+			ToggledPage?.Invoke(currentPage);
 		}
 
 		public void NextPage()
 		{
-			if (currentPage == booklet[currentInspectedComponent].Count - 1)
+			if (currentPage >= booklet.Count - 1)
 				return;
 
 			currentPage++;
 
-			ShowPage(currentPage);
+			ShowPage();
 		}
 
 		public void PreviousPage()
 		{
-			if (currentPage == 0)
+			if (currentPage <= 0)
 				return;
 
 			currentPage--;
 
-			ShowPage(currentPage);
+			ShowPage();
 		}
 	}
 }

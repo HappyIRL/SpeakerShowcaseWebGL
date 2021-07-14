@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,9 +15,7 @@ namespace Assets.Scripts
 		[SerializeField] private GameObject openGiveawayUI;
 
 		private PageHandler pageHandler;
-		private SpeakerComponents lastInspectedComponent = SpeakerComponents.None;
-		private SpeakerComponents lastlastInspectedComponent = SpeakerComponents.None;
-		private int UniquePagesToggled = 0;
+		private List<int> uniqueInspectedPages = new List<int>();
 		private bool wonGiveaway = false;
 
 		private void Awake()
@@ -42,24 +41,18 @@ namespace Assets.Scripts
 
 		}
 
-		private void UniquePageCheck(SpeakerComponents currentInspectedComponent)
+		private void UniquePageCheck(int openedPage)
 		{
-			if (wonGiveaway == true)
+			if (wonGiveaway == true || uniqueInspectedPages.Contains(openedPage))
 				return;
 
-			if (currentInspectedComponent != lastInspectedComponent && currentInspectedComponent != lastlastInspectedComponent)
-			{
-				lastlastInspectedComponent = lastInspectedComponent;
-				lastInspectedComponent = currentInspectedComponent;
-				UniquePagesToggled++;
-			}
+			uniqueInspectedPages.Add(openedPage);
 
-			if (UniquePagesToggled == 3)
+			if (uniqueInspectedPages.Count == 3)
 			{
 				CompleteGiveaway();
 				wonGiveaway = true;
 			}
-
 		}
 
 		private void CompleteGiveaway()

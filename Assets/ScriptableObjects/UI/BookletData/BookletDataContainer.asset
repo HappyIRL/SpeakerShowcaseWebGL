@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf09432e44cf63d4c8c2d5d5284d3d99, type: 3}
   m_Name: BookletDataContainer
   m_EditorClassIdentifier: 
-  BookletDatas:
+  bookletDatas:
+  - SpeakerComponent: 0
+    Header: Introduction
+    Description: 
+    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
   - SpeakerComponent: 1
-    Header: A SERIES
+    Header: Casing
     Description: 'The new A Series cabinets build on the heritage of ADAM Audio and
       the AX Series in particular. In an evolutionary design, A Series cabinets have
       deeper beveling to further reduce diffraction. In addition, thicker baffle
@@ -24,22 +28,38 @@ MonoBehaviour:
       box than other speakers. '
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
   - SpeakerComponent: 2
-    Header: A SERIES 1
+    Header: HPS Wave Guide
     Description: Page2
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
   - SpeakerComponent: 3
-    Header: A SERIES 2
+    Header: Tweeter
     Description: Page3
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
-  - SpeakerComponent: 5
-    Header: Backplate
+  - SpeakerComponent: 4
+    Header: Hps Screws
     Description: 
     Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
-  - SpeakerComponent: 1
-    Header: A SERIES (page 2)
+  - SpeakerComponent: 5
+    Header: Mid Range Driver
     Description: LOREM IPSUM
     Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
-  - SpeakerComponent: 0
-    Header: qewrqw
-    Description: qwe
-    Image: {fileID: 21300000, guid: 9ad2f1586271287479d6470fcbe18083, type: 3}
+  - SpeakerComponent: 6
+    Header: Big Woofer
+    Description: 
+    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+  - SpeakerComponent: 7
+    Header: Backplate Section One
+    Description: 
+    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+  - SpeakerComponent: 8
+    Header: Backplate Section Two
+    Description: 
+    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+  - SpeakerComponent: 9
+    Header: Backplate Section Three
+    Description: 
+    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+  - SpeakerComponent: 10
+    Header: Casing Screw Hollows
+    Description: 
+    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}

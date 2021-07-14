@@ -6,7 +6,9 @@ namespace Assets.Scripts
 	[CreateAssetMenu(menuName = "ScriptableObject/BookletData")]
 	public class BookletContainer : ScriptableObject
 	{
-		public List<BookletData> BookletDatas = new List<BookletData>();
+		public List<BookletData> BookletDatas => bookletDatas;
+
+		[SerializeField] private List<BookletData> bookletDatas = new List<BookletData>();
 
 		public void IncrementDatas()
 		{

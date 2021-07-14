@@ -2,21 +2,13 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-	public class Booklet : MonoBehaviour
+	public class BookletUI : MonoBehaviour
 	{
 		// references should be given through the constructor and it shouldnt be a mono behaviour
 		[SerializeField] private BookletContainer bookletContent;
 		[SerializeField] private PageHandler pageHandler;
 		[SerializeField] private GameObject NextButton;
 		[SerializeField] private GameObject PreviousButton;
-
-		private void Start()
-		{
-			foreach (BookletData data in bookletContent.BookletDatas)
-			{
-				pageHandler.AddPage(data);
-			}
-		}
 
 		public void OnClick_OpenBooklet()
 		{
@@ -38,7 +30,7 @@ namespace Assets.Scripts
 
 		private void EnableButtons()
 		{
-			if (pageHandler.CurrentPage == pageHandler.PageCountCurrentInspectedComponent - 1)
+			if (pageHandler.CurrentPage == pageHandler.PageCount - 1)
 				NextButton.SetActive(false);
 			else
 				NextButton.SetActive(true);
@@ -47,6 +39,7 @@ namespace Assets.Scripts
 				PreviousButton.SetActive(false);
 			else
 				PreviousButton.SetActive(true);
+
 		}
 	}
 }
