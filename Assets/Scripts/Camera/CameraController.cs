@@ -44,7 +44,8 @@ namespace Assets.Scripts
 		{
 			if (target == null)
 			{
-				parentTransform.position = speakerCasing.GetCurrentPosition();
+				if(speakerCasing != null)
+					parentTransform.position = speakerCasing.GetCurrentPosition();
 			}
 		}
 
@@ -58,19 +59,25 @@ namespace Assets.Scripts
 
 			target = interaction;
 
-			if (interaction == cameraFocus)
-			{
-				LerpToNewPosition(interaction);
-			}
+			cameraFocus = interaction;
+
+			LerpToNewPosition(interaction);
+
+			//target = interaction;
+
+			//if (interaction == cameraFocus)
+			//{
+			//	LerpToNewPosition(interaction);
+			//}
 		}
 
 		protected override void OnSameSelection(Interactable interaction)
 		{
-			target = interaction;
+			//target = interaction;
 
-			cameraFocus = interaction;
+			//cameraFocus = interaction;
 
-			LerpToNewPosition(interaction);
+			//LerpToNewPosition(interaction);
 		}
 		protected override void OnTouchInput(Vector2 start, HoverState state, GameObject go)
 		{
@@ -95,14 +102,13 @@ namespace Assets.Scripts
 		{
 			CameraMovement?.Invoke(interaction);
 
-
 			if (activeCoroutine != null)
 			{
 				StopCoroutine(activeCoroutine);
 				activeCoroutine = null;
 			}
 
-			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, target.GetFuturePosition(), 0.5f, 0));
+			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, target.GetUncasedPosition(), 0.5f, 0));
 		}
 
 		private void SetParentRotation(Vector2 start, Vector2 end)

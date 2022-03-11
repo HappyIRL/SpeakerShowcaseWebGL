@@ -8,6 +8,7 @@ namespace Assets.Scripts
 {
 	public class SpeakerFactory : MonoBehaviour
 	{
+		[Zenject.Inject] private PrefabFactory prefabFactory;
 
 		[SerializeField] private GameObject speakerParent;
 		[SerializeField] private List<GameObject> speakerParts;
@@ -21,13 +22,11 @@ namespace Assets.Scripts
 
 		private void CreateSpeaker()
 		{
-			GameObject parent = Instantiate(speakerParent);
+			Transform parent = prefabFactory.Create(speakerParent);
 			foreach (GameObject speaker in speakerParts)
 			{
-				GameObject speakerPartInstance = Instantiate(speaker);
-				speakerPartInstance.TryGetComponent(out SpeakerPart speakerPart);
-				speaker.transform.position = speakerPart.SpawnPosition;
-				speakerPartInstance.transform.parent = parent.transform;
+				Transform speakerPartInstance = prefabFactory.Create(speaker);
+				speakerPartInstance.transform.parent = parent;
 				SpawnedInteractable?.Invoke(speakerPartInstance.GetComponent<Interactable>());
 			}
 		}

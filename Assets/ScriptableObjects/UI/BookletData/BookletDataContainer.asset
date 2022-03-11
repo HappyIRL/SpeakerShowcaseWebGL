@@ -28,38 +28,18 @@ MonoBehaviour:
       box than other speakers. '
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
   - SpeakerComponent: 2
-    Header: HPS Wave Guide
+    Header: Tweeter
     Description: Page2
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
   - SpeakerComponent: 3
-    Header: Tweeter
+    Header: Mind Range Driver
     Description: Page3
     Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
   - SpeakerComponent: 4
-    Header: Hps Screws
+    Header: Woofer
     Description: 
     Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
   - SpeakerComponent: 5
-    Header: Mid Range Driver
-    Description: LOREM IPSUM
+    Header: Backplate
+    Description: 
     Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
-  - SpeakerComponent: 6
-    Header: Big Woofer
-    Description: 
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
-  - SpeakerComponent: 7
-    Header: Backplate Section One
-    Description: 
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
-  - SpeakerComponent: 8
-    Header: Backplate Section Two
-    Description: 
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
-  - SpeakerComponent: 9
-    Header: Backplate Section Three
-    Description: 
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
-  - SpeakerComponent: 10
-    Header: Casing Screw Hollows
-    Description: 
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}

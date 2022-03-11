@@ -24,11 +24,10 @@ namespace Assets.Scripts
 		{
 			if(objectHovered != null)
 			{
-				if (objectHovered.TryGetComponent(out Interactable interactable))
-				{
-					if (!SpeakerParent.IsSpeakerInteractable)
-						return;
+				Interactable interactable = objectHovered.GetComponentInParent<Interactable>();
 
+				if (interactable != null)
+				{
 					if (lastInteraction == interactable)
 					{
 						SameSelection?.Invoke(interactable);

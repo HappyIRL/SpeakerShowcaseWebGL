@@ -22,7 +22,6 @@ public class LightFollow : PlayerCallbacksMono
 		base.OnDisable();
 		cameraController.CameraMovement -= OnCameraMovement;
 		interactionHandler.SpeakerCasingSpawn -= OnSpeakerCasingSpawn;
-
 	}
 
 	private void Start()
@@ -59,8 +58,8 @@ public class LightFollow : PlayerCallbacksMono
 			activeCoroutine = null;
 		}
 
-		activeCoroutine = StartCoroutine(Utils.LerpToPositionLookAt(transform, currentTarget, target.GetFuturePosition(), 0.5f, 1f));
+		activeCoroutine = StartCoroutine(Utils.LerpToPositionLookAt(transform, currentTarget, target.GetUncasedPosition(), 0.5f, 1f));
 
-		currentTarget = target.GetFuturePosition();
+		currentTarget = target.GetUncasedPosition();
 	}
 }

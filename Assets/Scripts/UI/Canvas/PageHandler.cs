@@ -39,7 +39,7 @@ namespace Assets.Scripts
 				return;
 			}
 
-			if(bookletMapper.ContainsKey(data.SpeakerComponent))
+			if (bookletMapper.ContainsKey(data.SpeakerComponent))
 			{
 				Debug.LogError("Tried adding an additional booklet data into booklet with same speaker component id, this is not allowed!");
 				return;

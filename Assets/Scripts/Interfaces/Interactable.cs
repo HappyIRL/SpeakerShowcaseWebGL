@@ -6,7 +6,7 @@ namespace Assets.Scripts
 	{
 		public void ChangePosition();
 
-		public Vector3 GetFuturePosition();
+		public Vector3 GetUncasedPosition();
 
 		public Vector3 GetCurrentPosition();
 
