@@ -128,4 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxZoom: 2
-  minZoom: 0.5
+  minZoom: 0.7

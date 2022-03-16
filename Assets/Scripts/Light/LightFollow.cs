@@ -4,10 +4,8 @@ using UnityEngine;
 public class LightFollow : PlayerCallbacksMono
 {
 	[Zenject.Inject] private CameraController cameraController;
-	[Zenject.Inject] private InteractionHandler interactionHandler;
 
-	private Interactable speakerCasing;
-	private Interactable target;
+	private ISpeakerPart target;
 	private Vector3 currentTarget = Vector3.zero;
 	private Coroutine activeCoroutine;
 
@@ -15,13 +13,11 @@ public class LightFollow : PlayerCallbacksMono
 	{
 		base.OnEnable();
 		cameraController.CameraMovement += OnCameraMovement;
-		interactionHandler.SpeakerCasingSpawn += OnSpeakerCasingSpawn;
 	}
 	protected override void OnDisable()
 	{
 		base.OnDisable();
 		cameraController.CameraMovement -= OnCameraMovement;
-		interactionHandler.SpeakerCasingSpawn -= OnSpeakerCasingSpawn;
 	}
 
 	private void Start()
@@ -29,26 +25,12 @@ public class LightFollow : PlayerCallbacksMono
 		transform.LookAt(currentTarget);
 	}
 
-	private void Update()
-	{
-		if (target == null && speakerCasing != null)
-		{
-			currentTarget = speakerCasing.GetCurrentPosition();
-			transform.LookAt(currentTarget);
-		}
-	}
-
-	private void OnSpeakerCasingSpawn(Interactable interactable)
-	{
-		speakerCasing = interactable;
-	}
-
-	private void OnCameraMovement(Interactable interaction)
+	private void OnCameraMovement(ISpeakerPart interaction)
 	{
 		MoveLights(interaction);
 	}
 
-	private void MoveLights(Interactable interaction)
+	private void MoveLights(ISpeakerPart interaction)
 	{
 		target = interaction;
 
@@ -58,8 +40,8 @@ public class LightFollow : PlayerCallbacksMono
 			activeCoroutine = null;
 		}
 
-		activeCoroutine = StartCoroutine(Utils.LerpToPositionLookAt(transform, currentTarget, target.GetUncasedPosition(), 0.5f, 1f));
+		activeCoroutine = StartCoroutine(Utils.LerpToPositionLookAt(transform, currentTarget, target.GetCurrentPosition(), 0.5f, 0f));
 
-		currentTarget = target.GetUncasedPosition();
+		currentTarget = target.GetCurrentPosition();
 	}
 }

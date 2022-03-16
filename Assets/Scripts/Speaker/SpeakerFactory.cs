@@ -13,7 +13,7 @@ namespace Assets.Scripts
 		[SerializeField] private GameObject speakerParent;
 		[SerializeField] private List<GameObject> speakerParts;
 
-		public event Action<Interactable> SpawnedInteractable;
+		public event Action<ISpeakerPart> SpawnedInteractable;
 
 		private void Start()
 		{
@@ -27,7 +27,7 @@ namespace Assets.Scripts
 			{
 				Transform speakerPartInstance = prefabFactory.Create(speaker);
 				speakerPartInstance.transform.parent = parent;
-				SpawnedInteractable?.Invoke(speakerPartInstance.GetComponent<Interactable>());
+				SpawnedInteractable?.Invoke(speakerPartInstance.GetComponent<ISpeakerPart>());
 			}
 		}
 	}

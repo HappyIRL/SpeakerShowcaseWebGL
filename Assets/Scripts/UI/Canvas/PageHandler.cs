@@ -49,9 +49,12 @@ namespace Assets.Scripts
 			bookletMapper.Add(data.SpeakerComponent, booklet.Count - 1);
 		}
 
-		protected override void OnSameSelection(Interactable interaction)
+		protected override void OnSelection(ISpeakerPart interaction)
 		{
-			SpeakerComponents speakerComponent = interaction.GetSpeakerComponent();
+			if (interaction.GetCasingState())
+				return;
+
+			SpeakerComponents speakerComponent = interaction.GetSpeakerComponentType();
 
 			if (!bookletMapper.ContainsKey(speakerComponent))
 			{

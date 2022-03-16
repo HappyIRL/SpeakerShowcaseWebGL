@@ -15,21 +15,21 @@ namespace Assets.Scripts
 
 		private void OnEnable()
 		{
-			interactionHandler.SpeakerPartMovement += OnSpeakerPartMovement;
+			interactionHandler.ChangeCasingState += OnChangeCasingState;
 		}
 
 		private void OnDisable()
 		{
-			interactionHandler.SpeakerPartMovement -= OnSpeakerPartMovement;
+			interactionHandler.ChangeCasingState -= OnChangeCasingState;
 
 		}
 
-		private void OnSpeakerPartMovement(Interactable interaction)
+		private void OnChangeCasingState(ISpeakerPart interaction)
 		{
 			PlayInteraction(interaction);
 		}
 
-		private void PlayInteraction(Interactable interaction)
+		private void PlayInteraction(ISpeakerPart interaction)
 		{
 			var clip = interaction.GetAudioClip();
 			if (clip != null)

@@ -7,12 +7,11 @@ namespace Assets.Scripts
 	public class InteractionHandler : PlayerCallbacksMono
 	{
 		[Zenject.Inject] private SpeakerFactory speakerFactory;
-		[Zenject.Inject] private CameraController cameraController;
 
-		public event Action<Interactable> SpeakerCasingSpawn;
-		public event Action<Interactable> SpeakerPartMovement;
+		public event Action<ISpeakerPart> SpeakerCasingSpawn;
+		public event Action<ISpeakerPart> ChangeCasingState;
 
-		private List<Interactable> Interactables = new List<Interactable>();
+		private List<ISpeakerPart> Interactables = new List<ISpeakerPart>();
 
 		protected override void OnEnable()
 		{
@@ -26,28 +25,22 @@ namespace Assets.Scripts
 			speakerFactory.SpawnedInteractable -= OnSpawnedInteractable;
 		}
 
-		protected override void OnSelection(Interactable interaction)
+		protected override void OnSelection(ISpeakerPart interaction)
 		{
 			ChangeCasing(interaction);
 		}
 
-		protected override void OnSameSelection(Interactable interaction)
+		private void ChangeCasing(ISpeakerPart interaction)
 		{
-			if(cameraController.CameraFocus == interaction)
-				ChangeCasing(interaction);
+			interaction.ChangeCasingState();
+			ChangeCasingState?.Invoke(interaction);
 		}
 
-		private void ChangeCasing(Interactable interaction)
-		{
-			interaction.ChangePosition();
-			SpeakerPartMovement?.Invoke(interaction);
-		}
-
-		private void OnSpawnedInteractable(Interactable interactable)
+		private void OnSpawnedInteractable(ISpeakerPart interactable)
 		{
 			Interactables.Add(interactable);
 
-			if (interactable.GetSpeakerComponent() == SpeakerComponents.Casing)
+			if (interactable.GetSpeakerComponentType() == SpeakerComponents.Casing)
 			{
 				SpeakerCasingSpawn?.Invoke(interactable);
 			}

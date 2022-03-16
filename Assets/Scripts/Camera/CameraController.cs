@@ -7,18 +7,13 @@ namespace Assets.Scripts
 	{
 		[Zenject.Inject] private InteractionHandler interactionHandler;
 
-		public event Action<Interactable> CameraMovement;
-
-		private Interactable cameraFocus;
-		public Interactable CameraFocus => cameraFocus;
+		public event Action<ISpeakerPart> CameraMovement;
 
 		[SerializeField] private float maxZoom;
 		[SerializeField] private float minZoom;
 
-		private Interactable target;
 		private Vector3 localRotation = Vector3.zero;
 		private Transform parentTransform;
-		private Interactable speakerCasing;
 		private Coroutine activeCoroutine;
 		private bool isInititalHoverStateNothing = false;
 
@@ -32,6 +27,7 @@ namespace Assets.Scripts
 		{
 			base.OnEnable();
 			interactionHandler.SpeakerCasingSpawn += OnSpeakerCasingSpawn;
+			interactionHandler.ChangeCasingState += OnChangeCasingState;
 		}
 
 		protected override void OnDisable()
@@ -40,45 +36,17 @@ namespace Assets.Scripts
 			interactionHandler.SpeakerCasingSpawn -= OnSpeakerCasingSpawn;
 		}
 
-		private void Update()
+		private void OnSpeakerCasingSpawn(ISpeakerPart interactable)
 		{
-			if (target == null)
-			{
-				if(speakerCasing != null)
-					parentTransform.position = speakerCasing.GetCurrentPosition();
-			}
+			parentTransform.position = interactable.GetCurrentPosition();
 		}
 
-		private void OnSpeakerCasingSpawn(Interactable interactable)
+		private void OnChangeCasingState(ISpeakerPart interaction)
 		{
-			speakerCasing = interactable;
+			if(!interaction.GetCasingState())
+				LerpToNewPosition(interaction);
 		}
 
-		protected override void OnSelection(Interactable interaction)
-		{
-
-			target = interaction;
-
-			cameraFocus = interaction;
-
-			LerpToNewPosition(interaction);
-
-			//target = interaction;
-
-			//if (interaction == cameraFocus)
-			//{
-			//	LerpToNewPosition(interaction);
-			//}
-		}
-
-		protected override void OnSameSelection(Interactable interaction)
-		{
-			//target = interaction;
-
-			//cameraFocus = interaction;
-
-			//LerpToNewPosition(interaction);
-		}
 		protected override void OnTouchInput(Vector2 start, HoverState state, GameObject go)
 		{
 			if (state == HoverState.Nothing)
@@ -98,7 +66,7 @@ namespace Assets.Scripts
 			SetParentScale(scroll);
 		}
 
-		private void LerpToNewPosition(Interactable interaction)
+		private void LerpToNewPosition(ISpeakerPart interaction)
 		{
 			CameraMovement?.Invoke(interaction);
 
@@ -108,7 +76,7 @@ namespace Assets.Scripts
 				activeCoroutine = null;
 			}
 
-			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, target.GetUncasedPosition(), 0.5f, 0));
+			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, interaction.GetCurrentPosition(), 0.5f, 0));
 		}
 
 		private void SetParentRotation(Vector2 start, Vector2 end)

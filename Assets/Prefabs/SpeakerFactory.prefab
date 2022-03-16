@@ -46,11 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerParent: {fileID: 64340733659475520, guid: 4421dc312bd8c624fadb4b5f4028c3e0, type: 3}
   speakerParts:
-  - {fileID: 4329275355224960708, guid: 002bca91c44020d429ced1349c8bc8dd, type: 3}
-  - {fileID: 8518727555614995803, guid: cc076674d21724b4a8a9a252ee01de57, type: 3}
-  - {fileID: 3226648400224881331, guid: a535505db4894794482c1e87b627a039, type: 3}
-  - {fileID: 4604206074119201638, guid: d881c274671ca3a44a424270c6fd1907, type: 3}
-  - {fileID: 8248619838053860329, guid: 0d404f3ca6ae5724c843f24b31eade1e, type: 3}
+  - {fileID: 6302250846558664607, guid: 4dba7e4beaa2be54da5fdefd745166e2, type: 3}
+  - {fileID: 888632514056832504, guid: 333cb1213e25db245a4ab5041af14729, type: 3}
+  - {fileID: 8004827927742267195, guid: ed57a82276f451e40bec547ce2f4d569, type: 3}
 --- !u!23 &-882342175754421524
 MeshRenderer:
   m_ObjectHideFlags: 0

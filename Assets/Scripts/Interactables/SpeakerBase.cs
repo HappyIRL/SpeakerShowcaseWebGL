@@ -1,4 +1,3 @@
-using TreeEditor;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -13,59 +12,59 @@ namespace Assets.Scripts
 		Backplate
 	}
 
-	public class SpeakerBase : MonoBehaviour, Interactable
+	public class SpeakerBase : MonoBehaviour, ISpeakerPart
 	{
-		private Vector3 uncasedPosition;
-		private Vector3 casedPosition;
-
 		[SerializeField] private SpeakerComponents speakerPartType;
 		[SerializeField] private AudioClip moveIn;
 		[SerializeField] private AudioClip moveOut;
-		[SerializeField] private float moveOutScalar = 1.5f;
-
 		[SerializeField] private Animator animation;
 
 		private int ExplodeAnimationID;
 		private int ImplodeAnimationID;
+		private bool inCasing = true;
 
 		private AudioClip currentSound;
-
-		private bool inCasing = true;
 
 		private void Awake()
 		{
 			ExplodeAnimationID = Animator.StringToHash("Explode");
 			ImplodeAnimationID = Animator.StringToHash("Implode");
-			casedPosition = transform.position;
-			uncasedPosition = transform.position + transform.up.normalized * moveOutScalar;
 		}
 
-		public Vector3 GetUncasedPosition()
+		public bool GetCasingState()
 		{
-			return uncasedPosition;
+			return inCasing;
 		}
 
-		public SpeakerComponents GetSpeakerComponent()
+		public SpeakerComponents GetSpeakerComponentType()
 		{
 			return speakerPartType;
 		}
 
-		protected void MoveOutOfCasing()
+		public void MoveOutOfCasing()
 		{
-			if(animation != null)
-				animation.SetTrigger(ExplodeAnimationID);
+			if (animation == null)
+				return;
 
-			StartCoroutine(Utils.LerpToPosition(transform, uncasedPosition, 0.2f, 0));
-			inCasing = false;
+			animation.SetTrigger(ExplodeAnimationID);
 		}
 
-		protected void MoveIntoCasing()
+		public void MoveIntoCasing()
 		{
-			if (animation != null)
-				animation.SetTrigger(ImplodeAnimationID);
+			if (animation == null)
+				return;
 
-			StartCoroutine(Utils.LerpToPosition(transform, casedPosition, 0.2f, 0));
-			inCasing = true;
+			animation.SetTrigger(ImplodeAnimationID);
+		}
+
+		public void ChangeCasingState()
+		{
+			if (inCasing)
+				MoveOutOfCasing();
+			else
+				MoveIntoCasing();
+
+			inCasing = !inCasing;
 		}
 
 		public Vector3 GetCurrentPosition()
@@ -76,21 +75,6 @@ namespace Assets.Scripts
 		public AudioClip GetAudioClip()
 		{
 			return currentSound;
-		}
-
-		public void ChangePosition()
-		{
-			if (speakerPartType == SpeakerComponents.Casing)
-				return;
-
-			if (inCasing)
-			{
-				MoveOutOfCasing();
-			}
-			else
-			{
-				MoveIntoCasing();
-			}
 		}
 	}
 }
