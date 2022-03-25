@@ -16,6 +16,7 @@ namespace Assets.Scripts
 		private Transform parentTransform;
 		private Coroutine activeCoroutine;
 		private bool isInititalHoverStateNothing = false;
+		private Vector3 defaultPosition;
 
 		private void Awake()
 		{
@@ -38,13 +39,22 @@ namespace Assets.Scripts
 
 		private void OnSpeakerCasingSpawn(ISpeakerPart interactable)
 		{
-			parentTransform.position = interactable.GetCurrentPosition();
+			Vector3 pos = interactable.GetCurrentPosition();
+
+			parentTransform.position = pos;
+			defaultPosition = pos;
 		}
 
 		private void OnChangeCasingState(ISpeakerPart interaction)
 		{
-			if(!interaction.GetCasingState())
-				LerpToNewPosition(interaction);
+			if (!interaction.GetCasingState())
+				LerpToNewPosition(interaction.GetCurrentPosition());
+			else
+			{
+				LerpToNewPosition(defaultPosition);
+			}
+
+			CameraMovement?.Invoke(interaction);
 		}
 
 		protected override void OnTouchInput(Vector2 start, HoverState state, GameObject go)
@@ -66,17 +76,15 @@ namespace Assets.Scripts
 			SetParentScale(scroll);
 		}
 
-		private void LerpToNewPosition(ISpeakerPart interaction)
+		private void LerpToNewPosition(Vector3 pos)
 		{
-			CameraMovement?.Invoke(interaction);
-
 			if (activeCoroutine != null)
 			{
 				StopCoroutine(activeCoroutine);
 				activeCoroutine = null;
 			}
 
-			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, interaction.GetCurrentPosition(), 0.5f, 0));
+			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform.parent, pos, 1f, 0));
 		}
 
 		private void SetParentRotation(Vector2 start, Vector2 end)

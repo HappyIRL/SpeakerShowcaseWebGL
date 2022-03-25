@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,6 +19,8 @@ namespace Assets.Scripts
 
 		public event Action<Vector2, HoverState, GameObject> TouchInput;
 
+		public event Action<HoverState, GameObject> HoverGOState;
+
 		public event Action<Vector2, Vector2> DragInput;
 
 		public event Action<Vector2> ScrollInput;
@@ -29,6 +32,7 @@ namespace Assets.Scripts
 		private void Start()
 		{
 			sceneCamera = cameraController.GetComponent<Camera>();
+			StartCoroutine(HoverLoop());
 		}
 
 		private void Update()
@@ -52,7 +56,7 @@ namespace Assets.Scripts
 				Touch touch = Input.touches[0];
 				if (touch.phase == TouchPhase.Began)
 				{
-					HoverState result = HoveringOverObject(touch.position, out GameObject go);
+					HoverState result = GetHoverState(touch.position, out GameObject go);
 					TouchInput?.Invoke(touch.position, result, go);
 					beganInputPos = touch.position;
 				}
@@ -64,7 +68,7 @@ namespace Assets.Scripts
 			}
 			else if (Input.GetMouseButtonDown(0))
 			{
-				HoverState result = HoveringOverObject(Input.mousePosition, out GameObject go);
+				HoverState result = GetHoverState(Input.mousePosition, out GameObject go);
 				TouchInput?.Invoke(Input.mousePosition, result, go);
 				beganInputPos = Input.mousePosition;
 			}
@@ -75,7 +79,18 @@ namespace Assets.Scripts
 			}
 		}
 
-		private HoverState HoveringOverObject(Vector2 mousePosition, out GameObject go)
+		private IEnumerator HoverLoop()
+		{
+			while (true)
+			{
+				HoverState state = GetHoverState(Input.mousePosition, out GameObject go);
+				HoverGOState?.Invoke(state, go);
+
+				yield return new WaitForSeconds(0.1f);
+			}
+		}
+
+		private HoverState GetHoverState(Vector2 mousePosition, out GameObject go)
 		{
 			go = null;
 

@@ -18,17 +18,27 @@ namespace Assets.Scripts
 		[SerializeField] private AudioClip moveIn;
 		[SerializeField] private AudioClip moveOut;
 		[SerializeField] private Animator animation;
+		[SerializeField] private float moveOutScalar = 0;
 
-		private int ExplodeAnimationID;
-		private int ImplodeAnimationID;
+		private Vector3 moveOutPosition;
+		private Vector3 casedPosition;
+		private int explodeAnimationID;
+		private int implodeAnimationID;
 		private bool inCasing = true;
+		private Coroutine activeCoroutine;
 
 		private AudioClip currentSound;
 
 		private void Awake()
 		{
-			ExplodeAnimationID = Animator.StringToHash("Explode");
-			ImplodeAnimationID = Animator.StringToHash("Implode");
+			explodeAnimationID = Animator.StringToHash("Explode");
+			implodeAnimationID = Animator.StringToHash("Implode");
+		}
+
+		private void Start()
+		{
+			casedPosition = transform.position;
+			moveOutPosition = casedPosition + transform.up * moveOutScalar;
 		}
 
 		public bool GetCasingState()
@@ -46,7 +56,12 @@ namespace Assets.Scripts
 			if (animation == null)
 				return;
 
-			animation.SetTrigger(ExplodeAnimationID);
+			animation.SetTrigger(explodeAnimationID);
+
+			if (moveOutScalar != 0)
+			{
+				LerpToNewPosition(moveOutPosition);
+			}
 		}
 
 		public void MoveIntoCasing()
@@ -54,7 +69,12 @@ namespace Assets.Scripts
 			if (animation == null)
 				return;
 
-			animation.SetTrigger(ImplodeAnimationID);
+			animation.SetTrigger(implodeAnimationID);
+
+			if(moveOutScalar != 0)
+				LerpToNewPosition(casedPosition);
+
+			
 		}
 
 		public void ChangeCasingState()
@@ -65,6 +85,17 @@ namespace Assets.Scripts
 				MoveIntoCasing();
 
 			inCasing = !inCasing;
+		}
+
+		private void LerpToNewPosition(Vector3 pos)
+		{
+			if (activeCoroutine != null)
+			{
+				StopCoroutine(activeCoroutine);
+				activeCoroutine = null;
+			}
+
+			activeCoroutine = StartCoroutine(Utils.LerpToPosition(transform, pos, 0.4f, 0));
 		}
 
 		public Vector3 GetCurrentPosition()
