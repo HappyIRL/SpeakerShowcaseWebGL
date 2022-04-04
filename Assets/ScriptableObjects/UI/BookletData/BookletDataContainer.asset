@@ -15,31 +15,30 @@ MonoBehaviour:
   bookletDatas:
   - SpeakerComponent: 0
     Header: Introduction
-    Description: 
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+    Description: Introduction how the app works and maybe some hyper links to each
+      page
+    Image: {fileID: 21300000, guid: 2e66e7e22f325b444803bd69c60111b5, type: 3}
   - SpeakerComponent: 1
-    Header: Casing
-    Description: 'The new A Series cabinets build on the heritage of ADAM Audio and
-      the AX Series in particular. In an evolutionary design, A Series cabinets have
-      deeper beveling to further reduce diffraction. In addition, thicker baffle
-      walls strengthen the cabinets and reduce internal vibrations. A dual-sided
-      flared-port design optimizes airflow and helps reduce port noise. Overall the
-      A Series design can provide lower extension and higher efficiency in a smaller
-      box than other speakers. '
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+    Header: Mounting
+    Description: Mounting description
+    Image: {fileID: 21300000, guid: 6fb23be3578ad024ab8e783582a47174, type: 3}
   - SpeakerComponent: 2
-    Header: Tweeter
-    Description: Page2
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+    Header: Casing
+    Description: Casing description
+    Image: {fileID: 21300000, guid: 5a54e5c15598a4f47a386db7518012b3, type: 3}
   - SpeakerComponent: 3
-    Header: Mind Range Driver
-    Description: Page3
-    Image: {fileID: 21300000, guid: dced872e221f419409eb2c079efa6a26, type: 3}
+    Header: Tweeter
+    Description: Tweeter description
+    Image: {fileID: 21300000, guid: 38344aad58ace4d49883e2d6a145dd2a, type: 3}
   - SpeakerComponent: 4
-    Header: Woofer
-    Description: 
-    Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
+    Header: Mid Range Driver
+    Description: Mid-Range-Driver description
+    Image: {fileID: 21300000, guid: d04234e7bdcae9b4d8b3031b1234db8b, type: 3}
   - SpeakerComponent: 5
+    Header: Multi-Layer Mineral (MLM) Woofer
+    Description: MLM description
+    Image: {fileID: 21300000, guid: 0fa5328af1afae948b312ba522407c61, type: 3}
+  - SpeakerComponent: 6
     Header: Backplate
-    Description: 
-    Image: {fileID: 21300000, guid: c754f8fffc18be942a6a818b5fe429cd, type: 3}
+    Description: Backplate description
+    Image: {fileID: 21300000, guid: 34bf1893463bde3489784b9346768a05, type: 3}

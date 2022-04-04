@@ -10,6 +10,7 @@ namespace Assets.Scripts
 	{
 		public SpeakerComponents SpeakerComponent;
 		public string Header;
+		[TextArea(10,50)]
 		public string Description;
 		public Sprite Image;
 	}

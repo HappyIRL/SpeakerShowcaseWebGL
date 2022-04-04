@@ -8,11 +8,9 @@ namespace Assets.Scripts
 	{
 		[Zenject.Inject] private CanvasHandler canvasHandler;
 
-		[SerializeField] private GiveawayData giveawayData;
-		[SerializeField] private TMP_Text header;
-		[SerializeField] private TMP_Text description;
 		[SerializeField] private GameObject giveawayUI;
 		[SerializeField] private GameObject openGiveawayUI;
+		[SerializeField] private string giveawayCode;
 
 		private PageHandler pageHandler;
 		private List<int> uniqueInspectedPages = new List<int>();
@@ -26,29 +24,29 @@ namespace Assets.Scripts
 		private void OnEnable()
 		{
 			if (pageHandler != null)
-				pageHandler.ToggledPage += UniquePageCheck;
+				pageHandler.PageSelection += UniquePageSelectionCheck;
 		}
 
 		private void OnDisable()
 		{
 			if (pageHandler != null)
-				pageHandler.ToggledPage -= UniquePageCheck;
+				pageHandler.PageSelection -= UniquePageSelectionCheck;
 		}
 
 		public void OnClick_CopyToClipBoard()
 		{
-			GUIUtility.systemCopyBuffer = giveawayData.GiveawayCode;
+			GUIUtility.systemCopyBuffer = giveawayCode;
 
 		}
 
-		private void UniquePageCheck(int openedPage)
+		private void UniquePageSelectionCheck(int openedPage)
 		{
-			if (wonGiveaway == true || uniqueInspectedPages.Contains(openedPage))
+			if (wonGiveaway || uniqueInspectedPages.Contains(openedPage))
 				return;
 
 			uniqueInspectedPages.Add(openedPage);
 
-			if (uniqueInspectedPages.Count == 3)
+			if (uniqueInspectedPages.Count == 4)
 			{
 				CompleteGiveaway();
 				wonGiveaway = true;
@@ -59,15 +57,6 @@ namespace Assets.Scripts
 		{
 			giveawayUI.SetActive(true);
 			openGiveawayUI.SetActive(true);
-
-			if (giveawayData == null)
-			{
-				Debug.LogError("Need GiveawayData on the Giveaway component!");
-				return;
-			}
-
-			header.text = giveawayData.Header;
-			description.text = giveawayData.Description;
 		}
 	}
 }

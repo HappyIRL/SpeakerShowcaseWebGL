@@ -17,7 +17,7 @@ namespace Assets.Scripts
 		private int currentPage = 0;
 
 
-		public event Action<int> ToggledPage;
+		public event Action<int> PageSelection;
 
 		private Dictionary<SpeakerComponents, int> bookletMapper = new Dictionary<SpeakerComponents, int>();
 		private List<BookletData> booklet = new List<BookletData>();
@@ -73,6 +73,8 @@ namespace Assets.Scripts
 			uiPage.Header.text = data.Header;
 			uiPage.Description.text = data.Description;
 			uiPage.Image.sprite = data.Image;
+
+			PageSelection?.Invoke(currentPage);
 		}
 
 		public void TogglePage()
@@ -88,8 +90,6 @@ namespace Assets.Scripts
 			}
 
 			uiPageActive = !uiPageActive;
-
-			ToggledPage?.Invoke(currentPage);
 		}
 
 		public void NextPage()
