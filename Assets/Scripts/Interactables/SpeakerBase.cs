@@ -5,7 +5,6 @@ namespace Assets.Scripts
 	public enum SpeakerComponents
 	{
 		None,
-		Mounting,
 		Casing,
 		Tweeter,
 		MidRangeDriver,

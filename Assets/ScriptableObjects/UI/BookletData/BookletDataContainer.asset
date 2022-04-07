@@ -18,14 +18,10 @@ MonoBehaviour:
     Description: Introduction how the app works and maybe some hyper links to each
       page
     Image: {fileID: 21300000, guid: 2e66e7e22f325b444803bd69c60111b5, type: 3}
-  - SpeakerComponent: 1
+  - SpeakerComponent: 2
     Header: Mounting
     Description: Mounting description
     Image: {fileID: 21300000, guid: 6fb23be3578ad024ab8e783582a47174, type: 3}
-  - SpeakerComponent: 2
-    Header: Casing
-    Description: Casing description
-    Image: {fileID: 21300000, guid: 5a54e5c15598a4f47a386db7518012b3, type: 3}
   - SpeakerComponent: 3
     Header: Tweeter
     Description: Tweeter description
