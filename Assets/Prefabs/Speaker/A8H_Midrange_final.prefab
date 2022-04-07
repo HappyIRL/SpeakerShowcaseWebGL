@@ -1597,7 +1597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413a9cb63dcb1774183894fb08754b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speakerPartType: 4
+  speakerPartType: 3
   moveIn: {fileID: 0}
   moveOut: {fileID: 0}
   animation: {fileID: 4294253509436303207}

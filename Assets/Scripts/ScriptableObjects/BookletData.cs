@@ -12,6 +12,7 @@ namespace Assets.Scripts
 		public string Header;
 		[TextArea(10,50)]
 		public string Description;
+		public uint Size;
 		public Sprite Image;
 	}
 }

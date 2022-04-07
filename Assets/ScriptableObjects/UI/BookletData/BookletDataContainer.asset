@@ -14,27 +14,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookletDatas:
   - SpeakerComponent: 0
-    Header: Introduction
-    Description: Introduction how the app works and maybe some hyper links to each
-      page
-    Image: {fileID: 21300000, guid: 2e66e7e22f325b444803bd69c60111b5, type: 3}
-  - SpeakerComponent: 2
-    Header: Mounting
-    Description: Mounting description
+    Header: Controls
+    Description: 'A hearty welcome to this interactive A8H model!
+
+
+      Controls
+      to get you started:
+
+
+      - Drag while holding your left mouse button to
+      move the camera.
+
+      - Hover over each speaker component to see what can
+      be selected.
+
+      - To select a component to inspect in more detail, click
+      on it with your left mouse button.
+
+
+      Have fun exploring this interactive
+      A8H model!'
+    Size: 24
+    Image: {fileID: 21300000, guid: 5a54e5c15598a4f47a386db7518012b3, type: 3}
+  - SpeakerComponent: 1
+    Header: Cabinet and Mounting
+    Description: The new A Series cabinets build on the heritage of ADAM Audio and
+      the AX Series in particular. In an evolutionary design, the deep beveling of
+      the cabinets reduce diffraction while a sided flared-port optimizes airflow
+      and reduces port noise. In addition, thicker baffle walls strengthen the cabinets
+      and reduce internal vibrations. All A Series speakers include an underside
+      mounting interface, allowing them to be securely mounted on walls, ceilings,
+      or speaker stands.
+    Size: 27
     Image: {fileID: 21300000, guid: 6fb23be3578ad024ab8e783582a47174, type: 3}
-  - SpeakerComponent: 3
-    Header: Tweeter
-    Description: Tweeter description
+  - SpeakerComponent: 2
+    Header: Rotatable HPS Waveguide & X-ART Tweeter
+    Description: "ADAM Audio HPS (High-frequency Propagation System) waveguide technology
+      enables tweeters to disperse sound with controlled consistency that is broad
+      in the horizontal axis but tightly focused in the vertical plane. The A Series
+      waveguide is made from a new glass fiber polymer compound that helps create
+      a clear sound, free of unwanted resonance. The entire module can be rotated
+      in 90 degree steps to continue to benefit from HPS waveguide technology whether
+      you position the speaker horizontally or vertically.\_The ADAM Audio X-ART
+      (eXtended Accelerated Ribbon Technology) tweeter is at the heart of the waveguide.
+      Handmade in Germany, the X-ART tweeter is powered by an analogue class AB amplifier
+      and reproduces the finest sonic details with a precise transient response."
+    Size: 0
     Image: {fileID: 21300000, guid: 38344aad58ace4d49883e2d6a145dd2a, type: 3}
-  - SpeakerComponent: 4
-    Header: Mid Range Driver
-    Description: Mid-Range-Driver description
+  - SpeakerComponent: 3
+    Header: Dedicated Midrange Driver
+    Description: Adapted from technology used in the flagship S Series speakers,
+      the A Series midrange driver delivers a clean sound in a critical part of the
+      frequency range where humans are especially sensitive to coloration of sound.
+      Using a dedicated driver for the midrange further helps clarify lows and highs
+      by eliminating the need for woofers and tweeters to reproduce midrange frequencies.
+      Both the A77H and A8H models are three-way systems that use the A Series midrange
+      driver, which is made from the same MLM material as the woofers.
+    Size: 27
     Image: {fileID: 21300000, guid: d04234e7bdcae9b4d8b3031b1234db8b, type: 3}
-  - SpeakerComponent: 5
+  - SpeakerComponent: 4
     Header: Multi-Layer Mineral (MLM) Woofer
-    Description: MLM description
+    Description: A Series woofers are constructed from layers of mineral stone fibers
+      that have been baked together to create a lightweight but highly stable material
+      that helps eliminate partial vibrations. By combining this material with a
+      new magnet system, A Series woofers produce high output with low distortion,
+      delivering a clean low-end. The MLM woofers are powered by an entirely new
+      class D digital amplifier with facilitates the advanced feature set of the
+      A Series.
+    Size: 27
     Image: {fileID: 21300000, guid: 0fa5328af1afae948b312ba522407c61, type: 3}
-  - SpeakerComponent: 6
-    Header: Backplate
-    Description: Backplate description
+  - SpeakerComponent: 5
+    Header: Room Adaptation, Voicings, Remote Control & Room Correction
+    Description: "The A Series capitalizes on the transformative power of DSP-based
+      electronics to provide greater tuning precision and better predictability than
+      analog-only speakers. There are four bands of room equalisation on the back
+      panel, with each band adjustable in predefined steps to offer more than 100
+      adaptation options. The back panel also features two selectable \u201CVoicings\u201D
+      (signature ADAM AUDIO sound profiles) plus a third fully customisable option.
+      The advanced DSP of the A Series can be controlled remotely and in real time
+      using A Control, a dedicated software application that is available to download
+      free of charge from adam-audio.com.\_Using A Control, advanced Room correction
+      filters, including those from Sonarworks, can be pushed directly to an embedded
+      platform on the monitors."
+    Size: 0
     Image: {fileID: 21300000, guid: 34bf1893463bde3489784b9346768a05, type: 3}

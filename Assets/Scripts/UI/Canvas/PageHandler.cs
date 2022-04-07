@@ -74,6 +74,9 @@ namespace Assets.Scripts
 			uiPage.Description.text = data.Description;
 			uiPage.Image.sprite = data.Image;
 
+			if (data.Size != 0)
+				uiPage.Description.fontSize = data.Size;
+
 			PageSelection?.Invoke(currentPage);
 		}
 
