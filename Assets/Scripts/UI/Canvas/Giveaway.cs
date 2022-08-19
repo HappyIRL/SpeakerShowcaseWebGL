@@ -33,12 +33,6 @@ namespace Assets.Scripts
 				pageHandler.PageSelection -= UniquePageSelectionCheck;
 		}
 
-		public void OnClick_CopyToClipBoard()
-		{
-			GUIUtility.systemCopyBuffer = giveawayCode;
-
-		}
-
 		private void UniquePageSelectionCheck(int openedPage)
 		{
 			if (wonGiveaway || uniqueInspectedPages.Contains(openedPage))
